@@ -81,7 +81,7 @@ const ServicesPage = () => {
               </div>
               <h3 className="font-heading font-bold text-base text-primary">{s.title}</h3>
             </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 ml-12">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 ml-0 md:ml-12">
               {s.items.map((item) => (
                 <li key={item} className="text-sm text-foreground flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />

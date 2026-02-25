@@ -178,7 +178,7 @@ const CapabilitiesPage = () => {
 
       <div className="mt-8">
         <h3 className="font-heading font-bold text-base text-primary mb-3">Web & Mobile Highlights</h3>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {highlights.map((item) => (
             <div key={item.title} className="card-3d rounded-2xl p-4">
               <div className="font-heading font-semibold text-primary text-sm mb-2">{item.title}</div>
@@ -201,7 +201,7 @@ const CapabilitiesPage = () => {
           We provide tailored digital solutions to a wide range of industries, helping businesses innovate and grow with
           clear, measurable results.
         </p>
-        <div className="grid gap-4 md:grid-cols-3 items-start">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 items-start">
           {industries.map((group) => (
             <div key={group.group} className="card-3d rounded-2xl p-4 self-start">
               <div className="font-heading font-semibold text-primary text-sm mb-3">{group.group}</div>
@@ -220,7 +220,7 @@ const CapabilitiesPage = () => {
 
       <div className="mt-8">
         <h3 className="font-heading font-bold text-base text-primary mb-3">Engagement Models</h3>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
           {engagementModels.map((model) => (
             <div key={model.title} className="card-3d rounded-2xl p-4">
               <div className="font-heading font-semibold text-primary text-sm mb-1">{model.title}</div>

@@ -14,8 +14,8 @@ const CoverPage = () => {
       </div>
 
       {/* Cover content */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-10 py-24 text-center min-h-[600px]">
-        <img src={logo} alt="DEVIK DIGITAL SOLUTIONS" className="w-36 h-36 mb-8" />
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 py-16 md:py-24 text-center min-h-[600px]">
+        <img src={logo} alt="DEVIK DIGITAL SOLUTIONS" className="w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36 mb-8" />
 
         <h1 className="font-heading font-extrabold text-4xl md:text-5xl text-primary tracking-tight mb-1">
           DEVIK DIGITAL
@@ -26,16 +26,16 @@ const CoverPage = () => {
 
         <div className="section-divider w-28 mx-auto mb-5" />
 
-        <p className="font-heading text-muted-foreground text-sm tracking-[0.25em] uppercase italic mb-10">
+        <p className="font-heading text-muted-foreground text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.25em] uppercase italic mb-10">
           Your Vision, Our Code
         </p>
 
-        <div className="glass-panel card-3d rounded-xl px-8 py-4 max-w-sm">
+        <div className="glass-panel card-3d rounded-xl px-6 sm:px-8 py-4 max-w-sm">
           <h3 className="font-heading font-bold text-primary text-base mb-1">Company Profile</h3>
           <p className="text-muted-foreground text-sm">Innovative, Secure & Scalable Digital Solutions</p>
         </div>
 
-        <div className="mt-auto pt-16 text-xs text-muted-foreground space-y-1">
+        <div className="mt-auto pt-10 sm:pt-16 text-[10px] sm:text-xs text-muted-foreground space-y-1">
           <p className="font-heading font-semibold text-foreground">MUHAMMAD SULIMAN - CEO</p>
           <p>Gulistan-e-Johar, Karachi, Pakistan</p>
           <p>devikdigitalsolutions@gmail.com &nbsp;|&nbsp; +92 336 8158979</p>

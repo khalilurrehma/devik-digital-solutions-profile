@@ -39,7 +39,7 @@ const AboutPage = () => {
         ))}
       </div>
 
-      <div className="mt-8 grid grid-cols-4 gap-4 text-center">
+      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center">
         {[
           { num: "7+", label: "Years" },
           { num: "500+", label: "Projects" },

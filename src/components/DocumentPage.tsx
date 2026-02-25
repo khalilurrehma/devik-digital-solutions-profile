@@ -18,9 +18,9 @@ const DocumentPage = ({ children, showHeader = true, className = "" }: DocumentP
 
       {/* Header with logo & tagline */}
       {showHeader && (
-        <div className="relative z-10 flex items-center gap-3 px-10 pt-6 pb-2">
-          <img src={logo} alt="DEVIK DIGITAL SOLUTIONS" className="w-20 h-20" />
-          <div className="text-muted-foreground text-xs tracking-[0.35em] font-heading font-medium uppercase">
+        <div className="relative z-10 flex flex-wrap items-center gap-3 px-4 sm:px-6 md:px-10 pt-6 pb-2">
+          <img src={logo} alt="DEVIK DIGITAL SOLUTIONS" className="w-16 h-16 sm:w-20 sm:h-20" />
+          <div className="text-muted-foreground text-[10px] sm:text-xs tracking-[0.3em] font-heading font-medium uppercase">
             Your Vision, Our Code
           </div>
         </div>
@@ -32,12 +32,12 @@ const DocumentPage = ({ children, showHeader = true, className = "" }: DocumentP
       </div>
 
       {/* Content */}
-      <div className="relative z-10 px-10 py-6">
+      <div className="relative z-10 px-4 sm:px-6 md:px-10 py-6">
         {children}
       </div>
 
       {/* Footer contact bar */}
-      <div className="relative z-10 px-10 py-4 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+      <div className="relative z-10 px-4 sm:px-6 md:px-10 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] sm:text-xs text-muted-foreground">
         <div className="flex items-center gap-2">
           <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
           <span className="italic font-medium">+92 336 8158979</span>

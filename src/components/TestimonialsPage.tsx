@@ -47,12 +47,12 @@ const TestimonialsPage = () => {
 
       <div className="space-y-6">
         {testimonials.map((t) => (
-          <div key={t.name} className="testimonial-card card-3d rounded-b-lg p-6">
+          <div key={t.name} className="testimonial-card card-3d rounded-b-lg p-5 sm:p-6">
             <p className="text-foreground leading-relaxed italic mb-4">
               "{t.text}"
             </p>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-heading font-bold text-sm">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-heading font-bold text-sm">
                 {t.name[0]}
               </div>
               <div>
