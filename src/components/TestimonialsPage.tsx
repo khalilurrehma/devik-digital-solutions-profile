@@ -1,6 +1,23 @@
 import DocumentPage from "@/components/DocumentPage";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
+const emailTo = "devikdigitalsolutions@gmail.com";
+const emailSubject = "Project Inquiry - DEVIK DIGITAL SOLUTIONS";
+const emailBody = [
+  "Hello DEVIK DIGITAL SOLUTIONS Team,",
+  "",
+  "I'd like to discuss a project. Here are the details:",
+  "- Project type:",
+  "- Timeline:",
+  "- Budget:",
+  "",
+  "Thanks,",
+].join("\n");
+const mailtoHref = `mailto:${emailTo}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailTo)}&su=${encodeURIComponent(
+  emailSubject
+)}&body=${encodeURIComponent(emailBody)}`;
+
 const testimonials = [
   {
     text: "DEVIK DIGITAL SOLUTIONS is a true master, the project was completed on-time and on-budget. I hope to work with the team again soon.",
@@ -83,7 +100,9 @@ const TestimonialsPage = () => {
               </p>
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="mailto:devikdigitalsolutions@gmail.com"
+                  href={gmailHref}
+                  target="_blank"
+                  rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-heading font-semibold text-primary-foreground shadow-sm transition hover:opacity-90"
                 >
                   Email Us
@@ -100,15 +119,18 @@ const TestimonialsPage = () => {
             </div>
 
             <div className="grid gap-3">
-              <div className="flex items-start gap-3 rounded-xl p-4 card-3d">
+              <a
+                href={mailtoHref}
+                className="flex items-start gap-3 rounded-xl p-4 card-3d hover:opacity-90 transition"
+              >
                 <div className="mt-0.5 rounded-full bg-primary/10 p-2 text-primary">
                   <Mail className="h-4 w-4" />
                 </div>
                 <div>
                   <p className="text-xs font-heading font-semibold text-primary mb-1">Email</p>
-                  <p className="text-sm text-foreground">devikdigitalsolutions@gmail.com</p>
+                  <p className="text-sm text-foreground">{emailTo}</p>
                 </div>
-              </div>
+              </a>
               <div className="flex items-start gap-3 rounded-xl p-4 card-3d">
                 <div className="mt-0.5 rounded-full bg-secondary/10 p-2 text-secondary">
                   <Phone className="h-4 w-4" />
