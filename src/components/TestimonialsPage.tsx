@@ -109,7 +109,7 @@ const TestimonialsPage = () => {
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
-                  href="tel:+923368158979"
+                  href="tel:+923415202903"
                   className="inline-flex items-center gap-2 rounded-lg border border-primary/20 bg-white/60 px-4 py-2 text-xs font-heading font-semibold text-primary shadow-sm transition hover:bg-white"
                 >
                   Call Now
@@ -137,7 +137,7 @@ const TestimonialsPage = () => {
                 </div>
                 <div>
                   <p className="text-xs font-heading font-semibold text-primary mb-1">Phone</p>
-                  <p className="text-sm text-foreground">+92 336 8158979</p>
+                  <p className="text-sm text-foreground">+923415202903</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-xl p-4 card-3d">
@@ -150,7 +150,7 @@ const TestimonialsPage = () => {
                 </div>
               </div>
               <div className="pt-2 text-right">
-                <p className="font-heading font-bold text-primary text-sm">MUHAMMAD SULIMAN</p>
+                <p className="font-heading font-bold text-primary text-sm">KHALIL UR REHMAN</p>
                 <p className="text-muted-foreground text-xs italic">CEO</p>
                 <p className="text-muted-foreground text-xs italic">DEVIK DIGITAL SOLUTIONS</p>
               </div>

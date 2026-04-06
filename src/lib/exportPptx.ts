@@ -55,7 +55,7 @@ function addFooterStripes(slide: pptxgen.Slide) {
 function addFooterContact(slide: pptxgen.Slide) {
   slide.addText(
     [
-      { text: "Phone: +92 336 8158979", options: { fontSize: 8, color: "666666" } },
+      { text: "Phone: +923415202903", options: { fontSize: 8, color: "666666" } },
       { text: "     Email: devikdigitalsolutions@gmail.com", options: { fontSize: 8, color: "666666" } },
       { text: "     Location: Gulistan-e-Johar, Karachi, Pakistan", options: { fontSize: 8, color: "666666" } },
     ],
@@ -110,9 +110,9 @@ export async function exportToPptx() {
 
   // CEO info
   slide1.addText([
-    { text: "MUHAMMAD SULIMAN - CEO\n", options: { fontSize: 10, bold: true, color: NAVY } },
+    { text: "KHALIL UR REHMAN - CEO\n", options: { fontSize: 10, bold: true, color: NAVY } },
     { text: "Gulistan-e-Johar, Karachi, Pakistan\n", options: { fontSize: 8, color: "888888" } },
-    { text: "devikdigitalsolutions@gmail.com  |  +92 336 8158979", options: { fontSize: 8, color: "888888" } },
+    { text: "devikdigitalsolutions@gmail.com  |  +923415202903", options: { fontSize: 8, color: "888888" } },
   ], { x: 1, y: 6.2, w: 8, h: 0.6, align: "center" });
 
   // ============== SLIDE 2: ABOUT US ==============
@@ -282,7 +282,7 @@ export async function exportToPptx() {
     fontSize: 14, bold: true, color: NAVY, fontFace: "Arial",
   });
   slide4.addText([
-    { text: "MUHAMMAD SULIMAN", options: { fontSize: 10, bold: true, color: NAVY } },
+    { text: "KHALIL UR REHMAN", options: { fontSize: 10, bold: true, color: NAVY } },
     { text: " - CEO, DEVIK DIGITAL SOLUTIONS", options: { fontSize: 9, color: "888888" } },
   ], { x: 0.5, y: 6.35, w: 9, h: 0.3 });
 
