@@ -55,7 +55,7 @@ function addFooterStripes(slide: pptxgen.Slide) {
 function addFooterContact(slide: pptxgen.Slide) {
   slide.addText(
     [
-      { text: "Phone: +923415202903", options: { fontSize: 8, color: "666666" } },
+      { text: "Phone: +92 341 5202903", options: { fontSize: 8, color: "666666" } },
       { text: "     Email: devikdigitalsolutions@gmail.com", options: { fontSize: 8, color: "666666" } },
       { text: "     Location: Gulistan-e-Johar, Karachi, Pakistan", options: { fontSize: 8, color: "666666" } },
     ],
@@ -112,7 +112,7 @@ export async function exportToPptx() {
   slide1.addText([
     { text: "KHALIL UR REHMAN - CEO\n", options: { fontSize: 10, bold: true, color: NAVY } },
     { text: "Gulistan-e-Johar, Karachi, Pakistan\n", options: { fontSize: 8, color: "888888" } },
-    { text: "devikdigitalsolutions@gmail.com  |  +923415202903", options: { fontSize: 8, color: "888888" } },
+    { text: "devikdigitalsolutions@gmail.com  |  +92 341 5202903", options: { fontSize: 8, color: "888888" } },
   ], { x: 1, y: 6.2, w: 8, h: 0.6, align: "center" });
 
   // ============== SLIDE 2: ABOUT US ==============

@@ -137,7 +137,7 @@ const TestimonialsPage = () => {
                 </div>
                 <div>
                   <p className="text-xs font-heading font-semibold text-primary mb-1">Phone</p>
-                  <p className="text-sm text-foreground">+923415202903</p>
+                  <p className="text-sm text-foreground">+92 341 5202903</p>
                 </div>
               </div>
               <div className="flex items-start gap-3 rounded-xl p-4 card-3d">

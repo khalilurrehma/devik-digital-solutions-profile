@@ -38,7 +38,7 @@ const CoverPage = () => {
         <div className="mt-auto pt-10 sm:pt-16 text-[10px] sm:text-xs text-muted-foreground space-y-1">
           <p className="font-heading font-semibold text-foreground">KHALIL UR REHMAN - CEO</p>
           <p>Gulistan-e-Johar, Karachi, Pakistan</p>
-          <p>devikdigitalsolutions@gmail.com &nbsp;|&nbsp; +923415202903</p>
+          <p>devikdigitalsolutions@gmail.com &nbsp;|&nbsp; +92 341 5202903</p>
         </div>
       </div>
 

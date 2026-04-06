@@ -40,7 +40,7 @@ const DocumentPage = ({ children, showHeader = true, className = "" }: DocumentP
       <div className="relative z-10 px-4 sm:px-6 md:px-10 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] sm:text-xs text-muted-foreground">
         <div className="flex items-center gap-2">
           <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
-          <span className="italic font-medium">+923415202903</span>
+          <span className="italic font-medium">+92 341 5202903</span>
         </div>
         <div className="flex items-center gap-2">
           <Mail className="h-4 w-4 text-primary" aria-hidden="true" />
