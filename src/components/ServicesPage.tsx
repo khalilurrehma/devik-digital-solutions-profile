@@ -1,99 +1,160 @@
+import { Bot, CheckCircle2, Cloud, Globe, Palette, Server, Smartphone } from "lucide-react";
 import DocumentPage from "@/components/DocumentPage";
-import { Globe, Smartphone, Server, Palette, Cloud } from "lucide-react";
+import HeadingUnderline from "@/components/ui/HeadingUnderline";
 
 const services = [
   {
+    id: "01",
     icon: Globe,
     title: "Web Development",
-    items: [
-      "HTML5, CSS3, JavaScript (ES6+), Tailwind CSS, Bootstrap",
-      "React.js, Next.js, Vue.js, Nuxt.js, Angular.js",
-      "Progressive Web Apps (PWA) and responsive UI",
-      "Performance optimization and SEO readiness",
+    tagline: "Fast, scalable web apps built for growth",
+    gradient: "from-[#1a4a82] to-[#2d8fcf]",
+    features: [
+      "React.js, Next.js, Vue.js, Nuxt.js, Angular",
+      "Tailwind CSS, responsive & mobile-first UI",
+      "Progressive Web Apps (PWA)",
       "WordPress, Shopify, WooCommerce",
-      "Mobile-first, accessible UI/UX Design",
-      "OAuth Integration: Google, Facebook, Apple",
+      "Performance optimisation & SEO readiness",
+      "OAuth: Google, Facebook, Apple",
     ],
   },
   {
+    id: "02",
     icon: Smartphone,
     title: "Mobile App Development",
-    items: [
-      "Flutter & Dart (Cross-platform iOS & Android)",
+    tagline: "Cross-platform apps for iOS & Android",
+    gradient: "from-sky-500 to-[#1a4a82]",
+    features: [
+      "Flutter & Dart — single codebase, both stores",
       "React Native, Swift (iOS), Kotlin (Android)",
-      "Firebase Integration: Auth, Firestore, Storage",
-      "REST & GraphQL API Integration",
-      "Offline mode, local storage, background sync",
-      "Push Notifications & Analytics",
-      "App Store / Play Store deployment support",
+      "Firebase Auth, Firestore & Storage",
+      "REST & GraphQL API integration",
+      "Offline mode, push notifications & analytics",
+      "App Store & Play Store deployment",
     ],
   },
   {
+    id: "03",
     icon: Server,
     title: "Backend Development",
-    items: [
-      "Laravel, CodeIgniter, Core PHP, Node.js",
-      "RESTful APIs & SOAP Web Services",
-      "Microservices and scalable architecture",
-      "Real-time systems: WebSockets, MQTT",
-      "GPS tracking & fleet platforms (Traccar, Flespi)",
-      "AI automation, workflow orchestration, and integrations",
-      "OAuth2, JWT, Session-based Auth",
-      "MySQL, PostgreSQL, MongoDB",
-      "Payment Gateways: Stripe, PayPal, Razorpay",
+    tagline: "Robust APIs and scalable server systems",
+    gradient: "from-[#0a1f3d] to-[#1a4a82]",
+    features: [
+      "Laravel, Node.js, FastAPI, Django",
+      "RESTful APIs, GraphQL & WebSockets",
+      "Microservices & scalable architecture",
+      "OAuth2, JWT, session-based auth",
+      "MySQL, PostgreSQL, MongoDB, Redis",
+      "Payment gateways: Stripe, PayPal, Razorpay",
     ],
   },
   {
+    id: "04",
+    icon: Bot,
+    title: "AI & Automation",
+    tagline: "Intelligent workflows that run themselves",
+    gradient: "from-violet-600 to-[#2d8fcf]",
+    features: [
+      "OpenAI, LangChain & custom LLM integrations",
+      "AI-powered chatbots & virtual assistants",
+      "Workflow automation & business process AI",
+      "Data pipelines & intelligent reporting",
+      "Twilio, Stripe & third-party API automation",
+      "Agentic systems & RAG architectures",
+    ],
+  },
+  {
+    id: "05",
     icon: Palette,
     title: "UI/UX & Graphic Design",
-    items: [
-      "Figma, Adobe XD, Canva",
-      "Wireframes, Prototypes, Branding Kits",
-      "Design systems and component libraries",
-      "Usability testing and UX audits",
-      "Visual Storytelling & Logo Design",
+    tagline: "Design systems that convert and delight",
+    gradient: "from-pink-500 to-[#1a4a82]",
+    features: [
+      "Figma, Adobe XD prototypes & wireframes",
+      "Full design systems & component libraries",
+      "Brand identity, logos & visual storytelling",
+      "Usability testing & UX audits",
+      "Branding kits & marketing collateral",
     ],
   },
   {
+    id: "06",
     icon: Cloud,
     title: "Cloud & DevOps",
-    items: [
-      "Docker and containerized deployments",
-      "Vercel, Firebase, AWS, Netlify, Heroku",
-      "CI/CD Pipelines & Scalable Deployment",
-      "Version Control & Optimization",
+    tagline: "Ship faster, scale confidently",
+    gradient: "from-[#2d8fcf] to-sky-400",
+    features: [
+      "AWS, GCP, Vercel, Netlify, Heroku",
+      "Docker & containerised deployments",
+      "CI/CD pipelines & automated testing",
+      "Infrastructure as code (IaC)",
+      "Version control, monitoring & uptime",
     ],
   },
 ];
 
-const ServicesPage = () => {
-  return (
-    <DocumentPage>
-      <h2 className="font-heading font-bold text-2xl text-primary mb-1">Core Services</h2>
-      <div className="section-divider w-20 mb-6" />
+const ServicesPage = () => (
+  <div id="services" className="section-target">
+    <DocumentPage className="bg-slate-50">
 
-      <div className="space-y-5">
-        {services.map((s) => (
-          <div key={s.title} className="service-card card-3d rounded-r-lg p-5">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center shrink-0">
-                <s.icon className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <h3 className="font-heading font-bold text-base text-primary">{s.title}</h3>
-            </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 ml-0 md:ml-12">
-              {s.items.map((item) => (
-                <li key={item} className="text-sm text-foreground flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      {/* ── Section header ── */}
+      <div className="mb-12" data-reveal="reveal">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/20 bg-[#1a4a82]/5 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-[#1a4a82]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]" />
+          What We Do
+        </span>
+        <h2 className="mt-4 font-heading text-3xl font-extrabold text-[#0a1f3d] sm:text-4xl">
+          Core Services
+        </h2>
+        <HeadingUnderline className="mb-3" />
+        <p className="max-w-xl text-sm leading-relaxed text-slate-500">
+          Six practice areas. One delivery team. From first wireframe to live production — we handle it all.
+        </p>
       </div>
+
+      {/* ── Service cards grid ── */}
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, idx) => {
+          const Icon = s.icon;
+          return (
+            <div
+              key={s.id}
+              data-reveal={`reveal-scale reveal-delay-${(idx % 3) + 1}`}
+              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#1a4a82]/30 hover:shadow-[0_12px_40px_-12px_rgba(26,74,130,0.2)]"
+            >
+              {/* Top gradient accent */}
+              <div className={`h-[3px] w-full bg-gradient-to-r ${s.gradient}`} />
+
+              <div className="flex flex-1 flex-col p-6">
+                {/* Icon + number row */}
+                <div className="mb-4 flex items-start justify-between">
+                  <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.gradient} shadow-sm`}>
+                    <Icon className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="font-mono text-[11px] font-bold text-slate-300">{s.id}</span>
+                </div>
+
+                {/* Title + tagline */}
+                <h3 className="font-heading text-[16px] font-extrabold text-[#0a1f3d]">{s.title}</h3>
+                <p className="mt-1 mb-5 text-[13px] text-slate-400 leading-snug">{s.tagline}</p>
+
+                {/* Feature list */}
+                <ul className="mt-auto space-y-2">
+                  {s.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#2d8fcf]" />
+                      <span className="text-[12.5px] leading-snug text-slate-600">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
     </DocumentPage>
-  );
-};
+  </div>
+);
 
 export default ServicesPage;
