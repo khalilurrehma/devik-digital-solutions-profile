@@ -1,10 +1,11 @@
+import { CalendarCheck, Globe2, Rocket, Users2 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
 const stats = [
-  { value: 7,   suffix: "+", label: "Years Delivering",  sub: "Consistent quality since 2017", icon: "⚡" },
-  { value: 500, suffix: "+", label: "Projects Shipped",   sub: "Web, mobile & AI systems",       icon: "🚀" },
-  { value: 100, suffix: "+", label: "Happy Clients",      sub: "Startups to enterprise",         icon: "🤝" },
-  { value: 15,  suffix: "+", label: "Countries Served",   sub: "UK, USA, UAE & beyond",          icon: "🌍" },
+  { value: 7,   suffix: "+", label: "Years Delivering",  sub: "Consistent quality since 2017", Icon: CalendarCheck },
+  { value: 500, suffix: "+", label: "Projects Shipped",   sub: "Web, mobile & AI systems",       Icon: Rocket       },
+  { value: 100, suffix: "+", label: "Happy Clients",      sub: "Startups to enterprise",         Icon: Users2       },
+  { value: 15,  suffix: "+", label: "Countries Served",   sub: "UK, USA, UAE & beyond",          Icon: Globe2       },
 ];
 
 const StatsBar = () => (
@@ -23,7 +24,11 @@ const StatsBar = () => (
             {/* top colour strip per card */}
             <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
 
-            <div className="mb-3 text-2xl">{stat.icon}</div>
+            <div className="mb-3 flex justify-center">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#1a4a82] to-[#2d8fcf] shadow-sm">
+                <stat.Icon className="h-5 w-5 text-white" />
+              </div>
+            </div>
 
             <AnimatedCounter
               end={stat.value}

@@ -1,4 +1,4 @@
-import { Bot, CheckCircle2, Cloud, Globe, Palette, Server, Smartphone } from "lucide-react";
+import { Bot, CheckCircle2, Cloud, Code2, Globe, Palette, Server, Smartphone } from "lucide-react";
 import DocumentPage from "@/components/DocumentPage";
 import HeadingUnderline from "@/components/ui/HeadingUnderline";
 
@@ -98,16 +98,16 @@ const ServicesPage = () => (
     <DocumentPage className="bg-slate-50">
 
       {/* ── Section header ── */}
-      <div className="mb-12" data-reveal="reveal">
+      <div className="mb-12 text-center" data-reveal="reveal">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/20 bg-[#1a4a82]/5 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-[#1a4a82]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]" />
+          <Code2 className="h-3.5 w-3.5" />
           What We Do
         </span>
         <h2 className="mt-4 font-heading text-3xl font-extrabold text-[#0a1f3d] sm:text-4xl">
           Core Services
         </h2>
-        <HeadingUnderline className="mb-3" />
-        <p className="max-w-xl text-sm leading-relaxed text-slate-500">
+        <HeadingUnderline className="mx-auto mb-3 w-44" />
+        <p className="mx-auto max-w-xl text-sm leading-relaxed text-slate-500">
           Six practice areas. One delivery team. From first wireframe to live production — we handle it all.
         </p>
       </div>

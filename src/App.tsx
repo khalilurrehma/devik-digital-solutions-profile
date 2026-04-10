@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MobileBottomNav from "./components/MobileBottomNav";
 import RocketNav from "./components/RocketNav";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -31,18 +32,22 @@ const AppShell = () => {
       <StickyNav />
       <RocketNav />
       <WhatsAppFloat />
-      {/* <AiChatWidget /> */}
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/book" element={<BookPage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/pricing" element={<PricingFullPage />} />
-        <Route path="/contact" element={<ContactFullPage />} />
-        <Route path="/thank-you" element={<ThankYouPage />} />
-        <Route path="/insights/multi-tenant-saas-architecture" element={<InsightArticlePage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <SiteFooter />
+      {/* Main content — padded at bottom on mobile to clear the fixed bottom nav */}
+      <div className="pb-16 lg:pb-0">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/book" element={<BookPage />} />
+          <Route path="/work" element={<WorkPage />} />
+          <Route path="/pricing" element={<PricingFullPage />} />
+          <Route path="/contact" element={<ContactFullPage />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/insights/multi-tenant-saas-architecture" element={<InsightArticlePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <SiteFooter />
+      </div>
+      {/* Mobile bottom navigation — shown below lg breakpoint */}
+      <MobileBottomNav />
     </>
   );
 };

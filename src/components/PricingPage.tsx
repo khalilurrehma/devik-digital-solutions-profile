@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Sparkles, Zap } from "lucide-react";
+import { ArrowRight, Check, Sparkles, Tag, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import DocumentPage from "@/components/DocumentPage";
 import HeadingUnderline from "@/components/ui/HeadingUnderline";
@@ -38,7 +38,7 @@ const PricingPage = () => (
       {/* ── Section header ── */}
       <div className="mb-12 text-center" data-reveal="reveal">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/20 bg-[#1a4a82]/5 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-[#1a4a82]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]" />
+          <Tag className="h-3.5 w-3.5" />
           Pricing
         </span>
         <h2 className="mt-4 font-heading text-3xl font-extrabold text-[#0a1f3d] sm:text-4xl">

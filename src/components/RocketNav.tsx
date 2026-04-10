@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp, Rocket } from "lucide-react";
+import { ChevronDown, Rocket } from "lucide-react";
 
 const RocketNav = () => {
   const [visible, setVisible]   = useState(false);
@@ -29,7 +29,7 @@ const RocketNav = () => {
 
   return (
     <div
-      className={`no-print fixed bottom-6 left-5 z-50 flex flex-col items-center gap-2 transition-all duration-500 ${
+      className={`no-print fixed bottom-[88px] left-4 z-50 flex flex-col items-center gap-2 transition-all duration-500 lg:bottom-6 lg:left-5 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6 pointer-events-none"
       }`}
     >
@@ -91,17 +91,6 @@ const RocketNav = () => {
         <ChevronDown className="h-4 w-4" />
       </button>
 
-      {/* Up chevron (always visible as a hint when near top) */}
-      {progress < 5 && (
-        <button
-          type="button"
-          onClick={scrollToTop}
-          aria-label="Already at top"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-300 shadow-sm"
-        >
-          <ChevronUp className="h-4 w-4" />
-        </button>
-      )}
     </div>
   );
 };

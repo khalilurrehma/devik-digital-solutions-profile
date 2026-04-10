@@ -27,7 +27,7 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/khalil-ur-rehman-487a04139/",
     github: "https://github.com/khalilurrehma",
     behance: "https://www.behance.net/khalilurrehman16",
-    calendly: "https://calendly.com/deviktech0",
+    calendly: "https://calendly.com/deviktech0/30min",
   },
   featuredArticleSlug: "/insights/multi-tenant-saas-architecture",
   defaultWhatsAppMessage:

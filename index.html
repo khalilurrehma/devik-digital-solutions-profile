@@ -3,76 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#1f4068" />
-    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-    <link rel="apple-touch-icon" href="/favicon.jpg" />
+    <meta name="theme-color" content="#0a1f3d" />
 
-    <title>DEVIK DIGITAL SOLUTIONS - Full-Stack Web, Mobile & AI Development</title>
-    <meta
-      name="description"
-      content="DEVIK DIGITAL SOLUTIONS - Full-stack development team building React, Next.js, Flutter, Node.js, and AI-powered systems for startups and agencies in the UK, EU, USA, UAE, and beyond. 7+ years experience. Book a free strategy call."
-    />
-    <meta
-      name="keywords"
-      content="full stack developer, react developer, next.js, flutter, node.js, mobile app development, web development, AI integration, hire developer UK, hire developer USA, freelance development team, DEVIK Digital Solutions, Khalil ur Rehman"
-    />
-    <meta name="author" content="DEVIK DIGITAL SOLUTIONS" />
-    <meta name="robots" content="index, follow" />
+    <!-- Favicon (multi-format for broad browser support) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/jpeg" sizes="192x192" href="/favicon.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.jpg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Primary SEO -->
+    <title>DEVIK DIGITAL SOLUTIONS | Web, Mobile &amp; AI Development Team</title>
+    <meta name="description" content="DEVIK Digital Solutions builds React, Next.js, Flutter, Node.js and AI-powered systems for startups and agencies. 7+ years · 500+ projects · UK, USA, UAE, Canada, Australia. Book a free 30-min strategy call." />
+    <meta name="keywords" content="web development company, react developer for hire, next.js development, flutter mobile app, node.js backend, AI integration, full stack developer, hire software team, SaaS development, startup development partner, DEVIK Digital Solutions, Khalil ur Rehman, Pakistan software house, UK web developer, USA app developer, UAE tech team" />
+    <meta name="author" content="DEVIK DIGITAL SOLUTIONS — Khalil ur Rehman" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="application-name" content="DEVIK DIGITAL SOLUTIONS" />
     <link rel="canonical" href="https://devikdigitalsolutions.vercel.app/" />
 
+    <!-- Geographic targeting -->
+    <meta name="geo.region" content="PK-SD" />
+    <meta name="geo.placename" content="Karachi, Pakistan" />
+    <meta name="geo.position" content="24.8607;67.0011" />
+    <meta name="ICBM" content="24.8607, 67.0011" />
+
+    <!-- Open Graph (controls WhatsApp, Facebook, LinkedIn, Telegram previews) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://devikdigitalsolutions.vercel.app/" />
     <meta property="og:site_name" content="DEVIK DIGITAL SOLUTIONS" />
-    <meta property="og:title" content="DEVIK DIGITAL SOLUTIONS - Full-Stack Web, Mobile & AI Development" />
-    <meta
-      property="og:description"
-      content="We build scalable web and mobile apps for startups that mean business. React, Next.js, Flutter, Node.js, AI/ML. 7+ years. Clients across UK, EU, USA, UAE."
-    />
-    <meta property="og:image" content="/favicon.jpg" />
-    <meta property="og:image:alt" content="DEVIK DIGITAL SOLUTIONS - Your Vision, Our Code" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="DEVIK DIGITAL SOLUTIONS | Web, Mobile &amp; AI Development Team" />
+    <meta property="og:description" content="Full-stack development team building React, Next.js, Flutter and AI-powered products for startups across UK, USA, UAE, Canada &amp; Australia. 500+ projects shipped. Free 30-min strategy call." />
+    <meta property="og:image" content="https://devikdigitalsolutions.vercel.app/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://devikdigitalsolutions.vercel.app/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:alt" content="DEVIK DIGITAL SOLUTIONS — Full-Stack Web, Mobile &amp; AI Development" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="en_AE" />
 
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DEVIK DIGITAL SOLUTIONS - Full-Stack Web, Mobile & AI Development" />
-    <meta
-      name="twitter:description"
-      content="Scalable web and mobile apps for startups. React, Flutter, Node.js, AI. Book a free 30-min strategy call."
-    />
-    <meta name="twitter:image" content="/favicon.jpg" />
+    <meta name="twitter:site" content="@devikdigital" />
+    <meta name="twitter:title" content="DEVIK DIGITAL SOLUTIONS | Web, Mobile &amp; AI Development" />
+    <meta name="twitter:description" content="Full-stack team shipping React, Flutter, Node.js &amp; AI products for startups. 7+ years · 500+ projects. Book a free call." />
+    <meta name="twitter:image" content="https://devikdigitalsolutions.vercel.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="DEVIK DIGITAL SOLUTIONS — Full-Stack Development Team" />
 
+    <!-- Structured Data: Organization + ProfessionalService -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService"],
         "name": "DEVIK DIGITAL SOLUTIONS",
+        "alternateName": "DEVIK Digital",
         "url": "https://devikdigitalsolutions.vercel.app/",
         "logo": "https://devikdigitalsolutions.vercel.app/favicon.jpg",
-        "description": "Full-stack development company building web, mobile, and AI-powered systems for startups and agencies worldwide.",
+        "image": "https://devikdigitalsolutions.vercel.app/favicon.jpg",
+        "description": "Full-stack software development company building web, mobile, backend and AI-powered products for startups, agencies and growing companies worldwide.",
         "founder": {
           "@type": "Person",
           "name": "Khalil ur Rehman",
-          "jobTitle": "CEO"
+          "jobTitle": "CEO & Founder"
         },
+        "foundingDate": "2017",
+        "numberOfEmployees": { "@type": "QuantitativeValue", "value": 10 },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "Gulistan-e-Johar",
           "addressLocality": "Karachi",
           "addressRegion": "Sindh",
-          "addressCountry": "PK",
-          "streetAddress": "Gulistan-e-Johar"
+          "addressCountry": "PK"
         },
-        "contactPoint": [
-          {
-            "@type": "ContactPoint",
-            "telephone": "+92-341-5202903",
-            "email": "devikdigitalsolutions@gmail.com",
-            "contactType": "customer service",
-            "areaServed": ["GB", "US", "AE", "NO", "IE", "CA", "AU", "EU"],
-            "availableLanguage": ["en"]
-          }
+        "areaServed": [
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Canada" },
+          { "@type": "Country", "name": "Australia" }
         ],
-        "sameAs": ["https://devikdigitalsolutions.vercel.app/"]
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+92-341-5202903",
+          "email": "devikdigitalsolutions@gmail.com",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/khalil-ur-rehman-487a04139/",
+          "https://github.com/khalilurrehma",
+          "https://www.behance.net/khalilurrehman16"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software Development Services",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Application Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development (Flutter)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI & Machine Learning Integration" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Backend & API Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-Commerce Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud & DevOps" } }
+          ]
+        }
       }
     </script>
+
+    <!-- Structured Data: WebSite with SearchAction -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DEVIK DIGITAL SOLUTIONS",
+        "url": "https://devikdigitalsolutions.vercel.app/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://devikdigitalsolutions.vercel.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -81,40 +137,50 @@
           {
             "@type": "Question",
             "name": "How quickly can you start a new project?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Smaller builds can usually move quickly after scope approval. Larger products begin with planning so the roadmap, architecture, and milestones are clear before development starts."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Smaller builds can usually move quickly after scope approval. Larger products begin with planning so the roadmap, architecture, and milestones are clear before development starts." }
           },
           {
             "@type": "Question",
             "name": "Do you work with clients outside Pakistan?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. The delivery flow is structured for remote clients in the UK, EU, USA, UAE, and other international markets through email, WhatsApp, calls, and structured updates."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The delivery flow is structured for remote clients in the UK, EU, USA, UAE, Canada, and Australia through email, WhatsApp, calls, and structured updates." }
           },
           {
             "@type": "Question",
             "name": "Can you handle both design and development?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Projects can cover discovery, UI direction, frontend, backend, integrations, QA, deployment, and support."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Projects can cover discovery, UI direction, frontend, backend, integrations, QA, deployment, and support." }
           },
           {
             "@type": "Question",
             "name": "Do you provide maintenance after launch?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Every project can include a post-launch support window, and longer retainers are available for monitoring, enhancements, optimization, and issue response."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every project can include a post-launch support window, and longer retainers are available for monitoring, enhancements, optimization, and issue response." }
+          },
+          {
+            "@type": "Question",
+            "name": "What technologies do you specialise in?",
+            "acceptedAnswer": { "@type": "Answer", "text": "React, Next.js, Flutter, Node.js, Laravel, FastAPI, PostgreSQL, MongoDB, AWS, and AI/ML integrations with OpenAI and LangChain." }
           }
         ]
       }
     </script>
-  </head>
 
+    <!-- Structured Data: Article (featured blog post) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How We Structure Multi-Tenant SaaS Products With Next.js And PostgreSQL",
+        "description": "A practical breakdown of tenant-aware architecture, access control, billing boundaries, and the delivery decisions that keep SaaS products maintainable after launch.",
+        "author": { "@type": "Organization", "name": "DEVIK DIGITAL SOLUTIONS" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "DEVIK DIGITAL SOLUTIONS",
+          "logo": { "@type": "ImageObject", "url": "https://devikdigitalsolutions.vercel.app/favicon.jpg" }
+        },
+        "url": "https://devikdigitalsolutions.vercel.app/insights/multi-tenant-saas-architecture",
+        "mainEntityOfPage": "https://devikdigitalsolutions.vercel.app/insights/multi-tenant-saas-architecture"
+      }
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

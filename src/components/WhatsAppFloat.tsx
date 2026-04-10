@@ -12,7 +12,7 @@ const WhatsAppFloat = () => {
   }, []);
 
   return (
-    <div className="no-print fixed bottom-5 right-5 z-[60] flex flex-col items-end gap-2">
+    <div className="no-print fixed bottom-[88px] right-4 z-[60] flex flex-col items-end gap-2 lg:bottom-5 lg:right-5">
       {showTooltip && !dismissed && (
         <div className="animate-in fade-in slide-in-from-bottom-2 duration-500 relative max-w-[260px] rounded-2xl bg-white px-4 py-3 pr-8 text-xs font-medium text-foreground shadow-2xl ring-1 ring-black/5">
           <button

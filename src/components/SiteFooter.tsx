@@ -221,13 +221,45 @@ const SiteFooter = () => {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-white/60">
-              &copy; {year} {siteConfig.companyName}. Built with care by {siteConfig.founderName}.
-            </p>
-            <p className="text-xs text-white/60">
-              Available worldwide &middot; {siteConfig.responsePromise}
-            </p>
+          {/* ── Bottom bar ── */}
+          <div className="mt-10 border-t border-white/10 pt-6 space-y-4">
+
+            {/* Row 1 — status + quick links */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex flex-wrap items-center gap-3">
+                {/* Live availability dot */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                  <span className="text-[11px] font-heading font-semibold text-emerald-300">
+                    Available for new projects
+                  </span>
+                </div>
+                <span className="hidden text-[11px] text-white/25 sm:block">·</span>
+                <span className="hidden text-[11px] text-white/35 sm:block">
+                  24h response &nbsp;·&nbsp; Worldwide delivery
+                </span>
+              </div>
+
+              {/* Legal links */}
+              <div className="flex items-center gap-4 text-[11px] text-white/35">
+                <Link to="/contact" className="transition hover:text-white/60">Privacy Policy</Link>
+                <span className="text-white/15">|</span>
+                <Link to="/contact" className="transition hover:text-white/60">Terms of Service</Link>
+                <span className="text-white/15">|</span>
+                <Link to="/contact" className="transition hover:text-white/60">Cookie Policy</Link>
+              </div>
+            </div>
+
+            {/* Row 2 — copyright + registration */}
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-[11px] text-white/30">
+                &copy; {year} <span className="text-white/45 font-semibold">{siteConfig.companyName}</span> (Pvt. Ltd.) &mdash; Karachi, Pakistan. All rights reserved.
+              </p>
+              <p className="text-[11px] text-white/20">
+                Registered Software House &nbsp;·&nbsp; React · Flutter · Node.js · AI
+              </p>
+            </div>
+
           </div>
         </div>
       </div>

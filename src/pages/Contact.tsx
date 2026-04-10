@@ -99,14 +99,12 @@ const ContactFullPage = () => {
         {/* Bottom fade */}
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#040e1c] to-transparent" />
 
-        <div className="relative z-10 mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-16">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white/60 transition hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" /> Back to Home
-          </Link>
+        {/* Back breadcrumb */}
+        <Link to="/" className="absolute left-6 top-[72px] z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-heading font-semibold text-white/80 backdrop-blur-sm transition hover:bg-white/18 hover:text-white sm:left-10 lg:left-16">
+          <ArrowLeft className="h-3 w-3" /> Home
+        </Link>
 
+        <div className="relative z-10 mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-16">
           <div className="mt-8 max-w-2xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-white/70">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />

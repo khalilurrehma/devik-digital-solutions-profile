@@ -458,8 +458,8 @@
 }
 
 @keyframes devik-glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(58, 166, 255, 0); }
-  50%       { box-shadow: 0 0 40px 8px rgba(58, 166, 255, 0.28); }
+  0%, 100% { box-shadow: 0 8px 28px -8px rgba(45,111,176,0.7); }
+  50%       { box-shadow: 0 8px 28px -8px rgba(45,111,176,0.7), 0 0 32px 6px rgba(58,166,255,0.5); }
 }
 
 @keyframes devik-gradient-x {
@@ -496,7 +496,26 @@
 
 /* gradient CTA glow */
 .animate-glow-pulse {
-  animation: devik-glow-pulse 2.8s ease-in-out infinite;
+  animation: devik-glow-pulse 6s ease-in-out infinite;
+}
+
+/* sequential CTA attention glow — fires in order: blue → white → green
+   Uses filter:drop-shadow (GPU composited, no paint cost) */
+@keyframes seq-glow-white {
+  0%, 25%, 100% { filter: drop-shadow(0 0 0px rgba(255,255,255,0)); }
+  45%           { filter: drop-shadow(0 0 18px rgba(255,255,255,0.7)) drop-shadow(0 0 36px rgba(200,230,255,0.4)); }
+}
+@keyframes seq-glow-green {
+  0%, 58%, 100% { filter: drop-shadow(0 0 0px rgba(37,211,102,0)); }
+  78%           { filter: drop-shadow(0 0 18px rgba(37,211,102,0.75)) drop-shadow(0 0 36px rgba(37,211,102,0.4)); }
+}
+/* CTA 2 "See Our Work": fires at 2s into the 6s cycle */
+.animate-seq-glow-2 {
+  animation: seq-glow-white 6s ease-in-out 2s infinite;
+}
+/* CTA 3 "WhatsApp": fires at 4s into the 6s cycle */
+.animate-seq-glow-3 {
+  animation: seq-glow-green 6s ease-in-out 4s infinite;
 }
 
 /* animated gradient background */
@@ -661,6 +680,76 @@
 @media (prefers-reduced-motion: reduce) {
   .heading-underline .hu-path { animation: none; stroke-dashoffset: 0; }
   .heading-underline .hu-dot  { animation: none; opacity: 0.55; }
+}
+
+/* ── Hero cursor spotlight ── */
+.hero-spotlight {
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+  --spotlight-opacity: 0;
+}
+.hero-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    700px circle at var(--spotlight-x) var(--spotlight-y),
+    rgba(56, 189, 248, 0.08),
+    transparent 48%
+  );
+  opacity: var(--spotlight-opacity);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* ── Hero headline aurora glow — GPU composited (filter only, no paint) ── */
+@keyframes hero-text-glow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 10px rgba(56, 189, 248, 0.65))
+      drop-shadow(0 0 28px rgba(56, 189, 248, 0.30))
+      brightness(1)
+      hue-rotate(0deg);
+  }
+  35% {
+    filter:
+      drop-shadow(0 0 22px rgba(125, 211, 252, 1))
+      drop-shadow(0 0 52px rgba(56, 189, 248, 0.55))
+      drop-shadow(0 0 88px rgba(14, 165, 233, 0.28))
+      brightness(1.20)
+      hue-rotate(-18deg);
+  }
+  70% {
+    filter:
+      drop-shadow(0 0 16px rgba(56, 189, 248, 0.80))
+      drop-shadow(0 0 36px rgba(14, 165, 233, 0.42))
+      brightness(1.08)
+      hue-rotate(10deg);
+  }
+}
+.animate-hero-glow {
+  animation: hero-text-glow 5s ease-in-out infinite;
+  will-change: filter;
+}
+
+/* ── Scroll indicator ── */
+@keyframes scroll-line-drop {
+  0%   { transform: scaleY(0); transform-origin: top center; opacity: 0.9; }
+  48%  { transform: scaleY(1); transform-origin: top center; opacity: 0.9; }
+  50%  { transform: scaleY(1); transform-origin: bottom center; opacity: 0.9; }
+  100% { transform: scaleY(0); transform-origin: bottom center; opacity: 0.3; }
+}
+@keyframes scroll-dot-fall {
+  0%        { transform: translateY(0);   opacity: 0;   }
+  15%, 65%  { opacity: 1; }
+  85%, 100% { transform: translateY(22px); opacity: 0; }
+}
+.animate-scroll-line {
+  animation: scroll-line-drop 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.animate-scroll-dot {
+  animation: scroll-dot-fall 2.2s ease-in-out infinite;
 }
 
 /* ── Hero particle animation ── */

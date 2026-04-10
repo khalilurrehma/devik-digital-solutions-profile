@@ -1,5 +1,5 @@
 import {
-  CheckCircle2, MessageSquare, Rocket, Shield, Target, Users2,
+  Building2, CheckCircle2, Globe2, MessageSquare, Rocket, Shield, Target, Users2, Zap,
 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import DocumentPage from "@/components/DocumentPage";
@@ -40,10 +40,10 @@ const values = [
 ];
 
 const stats = [
-  { value: 7,   suffix: "+", label: "Years in delivery",  icon: "⚡" },
-  { value: 500, suffix: "+", label: "Projects shipped",   icon: "🚀" },
-  { value: 100, suffix: "+", label: "Clients served",     icon: "🤝" },
-  { value: 10,  suffix: "+", label: "Team strength",      icon: "👥" },
+  { value: 7,   suffix: "+", label: "Years in delivery",  Icon: Zap      },
+  { value: 500, suffix: "+", label: "Projects shipped",   Icon: Rocket   },
+  { value: 100, suffix: "+", label: "Clients served",     Icon: Users2   },
+  { value: 10,  suffix: "+", label: "Team strength",      Icon: Globe2   },
 ];
 
 const AboutPage = () => (
@@ -53,7 +53,7 @@ const AboutPage = () => (
       {/* ── Section header ── */}
       <div className="mb-12 text-center" data-reveal="reveal">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/20 bg-[#1a4a82]/5 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-[#1a4a82]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]" />
+          <Building2 className="h-3.5 w-3.5" />
           About Us
         </span>
         <h2 className="mt-4 font-heading text-3xl font-extrabold text-[#0a1f3d] sm:text-4xl">
@@ -143,7 +143,11 @@ const AboutPage = () => (
             className="group relative overflow-hidden rounded-2xl border-2 border-[#1a4a82]/15 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#1a4a82]/40 hover:shadow-[0_8px_32px_-8px_rgba(26,74,130,0.2)]"
           >
             <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] opacity-50 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="mb-2 text-xl">{stat.icon}</div>
+            <div className="mb-3 flex justify-center">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#1a4a82] to-[#2d8fcf] shadow-sm">
+                <stat.Icon className="h-4 w-4 text-white" />
+              </div>
+            </div>
             <AnimatedCounter
               end={stat.value}
               suffix={stat.suffix}

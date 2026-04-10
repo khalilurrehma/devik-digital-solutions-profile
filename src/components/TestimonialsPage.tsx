@@ -98,7 +98,7 @@ const TestimonialsPage = () => (
       {/* ── Section header ── */}
       <div className="mb-12 text-center" data-reveal="reveal">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/20 bg-[#1a4a82]/5 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-[#1a4a82]">
-          <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
           Client Testimonials
         </span>
         <h2 className="mt-4 font-heading text-3xl font-extrabold text-[#0a1f3d] sm:text-4xl">

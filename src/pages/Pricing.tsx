@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, CalendarDays, Check, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Check, MessageCircle, Sparkles, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildWhatsAppHref } from "@/lib/siteConfig";
 
@@ -232,12 +232,14 @@ const PricingFullPage = () => (
       <div className="pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-[#1a4a82]/25 blur-[100px]" />
       <div className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-sky-600/15 blur-[80px]" />
 
+      {/* Back breadcrumb — sits below sticky nav, outside main content flow */}
+      <Link to="/" className="absolute left-6 top-[72px] z-10 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-heading font-semibold text-white/80 backdrop-blur-sm transition hover:bg-white/18 hover:text-white sm:left-10 lg:left-16">
+        <ArrowLeft className="h-3 w-3" /> Home
+      </Link>
+
       <div className="relative mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-16">
-        <Link to="/" className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 text-xs font-heading font-semibold text-white/70 transition hover:text-white">
-          <ArrowLeft className="h-3.5 w-3.5" /> Back to Home
-        </Link>
         <span className="inline-flex items-center gap-2 rounded-full border border-[#1a4a82]/40 bg-[#1a4a82]/15 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-sky-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+          <Tag className="h-3.5 w-3.5" />
           Pricing
         </span>
         <h1 className="mt-5 max-w-3xl font-heading text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
