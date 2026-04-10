@@ -1,18 +1,14 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
-import { ArrowRight, CalendarDays, CheckCircle2, Clock3, Globe2, Mail, MessageCircle } from "lucide-react";
+import {
+  ArrowLeft, ArrowRight, CalendarDays, CheckCircle2,
+  Clock3, Globe2, MessageCircle, Search, Send, Sparkles,
+} from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 import {
-  budgetOptions,
-  buildGmailComposeHref,
-  buildLeadWhatsAppHref,
-  BookingFormData,
-  initialBookingForm,
-  latestLeadStorageKey,
-  serviceOptions,
-  siteConfig,
-  sourceOptions,
-  timelineOptions,
+  budgetOptions, buildGmailComposeHref, buildLeadWhatsAppHref,
+  BookingFormData, initialBookingForm, latestLeadStorageKey,
+  serviceOptions, siteConfig, sourceOptions, timelineOptions,
 } from "@/lib/siteConfig";
 import CalendlyInlineEmbed from "@/components/CalendlyInlineEmbed";
 import { usePageMeta } from "@/hooks/usePageMeta";
@@ -22,325 +18,324 @@ type ErrorState = Partial<Record<keyof BookingFormData, string>>;
 
 const validateForm = (values: BookingFormData): ErrorState => {
   const errors: ErrorState = {};
-
   if (!values.fullName.trim()) errors.fullName = "Full name is required.";
-  if (!values.email.trim()) errors.email = "Email address is required.";
+  if (!values.email.trim())    errors.email    = "Email address is required.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = "Enter a valid email address.";
   if (!values.whatsapp.trim()) errors.whatsapp = "WhatsApp or phone is required.";
-
   return errors;
 };
+
+const nextSteps = [
+  { Icon: Search,       title: "We review your brief",          desc: "We read every submission carefully before reaching out." },
+  { Icon: CalendarDays, title: "30-min call, no pitch",         desc: "We discuss scope, stack, and realistic next steps together." },
+  { Icon: Sparkles,     title: "Clear proposal follows",        desc: "Scope, timeline, and cost — in plain language, within 24h." },
+];
 
 const BookPage = () => {
   usePageMeta(
     "Book a Strategy Call | DEVIK DIGITAL SOLUTIONS",
-    "Tell DEVIK DIGITAL SOLUTIONS about your project, budget, and timeline to start a focused strategy call."
+    "Tell us about your project and book a free 30-minute strategy call.",
   );
 
   const navigate = useNavigate();
-  const [form, setForm] = useState<BookingFormData>(initialBookingForm);
+  const [form, setForm]     = useState<BookingFormData>(initialBookingForm);
   const [errors, setErrors] = useState<ErrorState>({});
 
   const handleChange =
     (field: keyof BookingFormData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      const value = event.target.value;
-      setForm((current) => ({ ...current, [field]: value }));
-      setErrors((current) => ({ ...current, [field]: undefined }));
+      setForm((p)   => ({ ...p,   [field]: event.target.value }));
+      setErrors((p) => ({ ...p,   [field]: undefined }));
     };
 
   const handleSelectChange = (field: keyof BookingFormData) => (value: string) => {
-    setForm((current) => ({ ...current, [field]: value }));
-    setErrors((current) => ({ ...current, [field]: undefined }));
+    setForm((p)   => ({ ...p,   [field]: value }));
+    setErrors((p) => ({ ...p,   [field]: undefined }));
   };
 
-  const contactOptions = useMemo(
-    () => ({
-      whatsapp: buildLeadWhatsAppHref(form),
-      gmail: buildGmailComposeHref(form),
-    }),
-    [form]
-  );
+  const whatsappHref = useMemo(() => buildLeadWhatsAppHref(form), [form]);
+  const gmailHref    = useMemo(() => buildGmailComposeHref(form),  [form]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validateForm(form);
-
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      return;
-    }
-
+    if (Object.keys(nextErrors).length > 0) { setErrors(nextErrors); return; }
     localStorage.setItem(latestLeadStorageKey, JSON.stringify(form));
-    toast({
-      title: "Project brief ready",
-      description: "Choose the fastest contact channel on the next step.",
-    });
-
+    toast({ title: "Project brief ready", description: "Choose your contact channel on the next step." });
     navigate("/thank-you", { state: form });
   };
 
   return (
-    <div className="min-h-screen bg-background px-4 pb-6 pt-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1180px]">
-        <div className="relative overflow-hidden rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top_left,_rgba(21,77,127,0.18),_transparent_42%),linear-gradient(145deg,#0f2440_0%,#17345e_52%,#0f2440_100%)] px-6 py-10 text-white shadow-[0_40px_120px_-48px_rgba(7,19,38,0.95)] sm:px-8 lg:px-12 lg:py-14">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(58,166,255,0.22),transparent_32%),radial-gradient(circle_at_20%_100%,rgba(56,189,248,0.18),transparent_34%)]" />
+    <div className="min-h-screen bg-slate-50">
 
-          <div className="relative z-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white/80 transition hover:text-white"
-              >
-                Back to site
-              </Link>
-              <p className="mt-6 text-xs font-heading font-semibold uppercase tracking-[0.28em] text-sky-300/90">
-                Book Your Free 30-Minute Strategy Call
-              </p>
-              <h1 className="mt-3 font-heading text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
-                Tell us about the product you want to build.
+      {/* ── Hero ── */}
+      <div className="hero-section-bg relative overflow-hidden pb-20 pt-28">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="pointer-events-none absolute -left-40 top-1/4 h-[440px] w-[440px] rounded-full bg-[#1a4a82]/25 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-sky-600/15 blur-[90px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#040e1c] to-transparent" />
+
+        <div className="relative z-10 mx-auto max-w-screen-xl px-6 sm:px-10 lg:px-16">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white/60 transition hover:text-white">
+            <ArrowLeft className="h-4 w-4" /> Back to Home
+          </Link>
+
+          <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-1.5 text-xs font-heading font-bold uppercase tracking-[0.22em] text-sky-300">
+                <CalendarDays className="h-3.5 w-3.5" />
+                Free 30-Min Strategy Call
+              </span>
+              <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl">
+                Tell us about the<br className="hidden sm:block" />
+                <span className="bg-gradient-to-r from-sky-400 via-[#3a8fd4] to-[#2d6fb0] bg-clip-text text-transparent">
+                  {" "}product you want to build.
+                </span>
               </h1>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
-                Share the basics of your project and we&apos;ll help you scope the right build, stack, and next steps.
-                No pressure, no generic pitch, just practical guidance.
+              <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-white/50">
+                Share the basics — we'll help you scope the right build, stack, and next steps. No pressure, no generic pitch. Just practical guidance.
               </p>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                {[
-                  { icon: CheckCircle2, label: "Private project discussion" },
-                  { icon: Clock3, label: "Fast reply window" },
-                  { icon: Globe2, label: "Clients worldwide" },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-sm">
-                    <item.icon className="h-5 w-5 text-sky-300 mb-3" />
-                    <p className="text-sm font-medium text-white/90">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8 rounded-[24px] border border-white/10 bg-white/6 p-5 backdrop-blur-sm">
-                <p className="text-xs font-heading font-semibold uppercase tracking-[0.22em] text-white/60 mb-3">
-                  Prefer direct contact?
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href={contactOptions.whatsapp}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-heading font-semibold text-white transition hover:scale-[1.02]"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    WhatsApp
-                  </a>
-                  <a
-                    href={contactOptions.gmail}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-heading font-semibold text-white transition hover:bg-white/14"
-                  >
-                    <Mail className="h-4 w-4" />
-                    Email
-                  </a>
-                  {siteConfig.socialLinks.calendly && (
-                    <a
-                      href={siteConfig.socialLinks.calendly}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-sky-300/30 bg-sky-400/10 px-4 py-2.5 text-sm font-heading font-semibold text-sky-100 transition hover:bg-sky-400/15"
-                    >
-                      <CalendarDays className="h-4 w-4" />
-                      Calendly
-                    </a>
-                  )}
-                </div>
-              </div>
             </div>
 
-            <div className="rounded-[28px] border border-white/10 bg-white/8 p-5 shadow-[0_32px_64px_-40px_rgba(0,0,0,0.9)] backdrop-blur-lg sm:p-7">
-              <form onSubmit={handleSubmit} className="grid gap-5">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="Full Name"
-                    value={form.fullName}
-                    onChange={handleChange("fullName")}
-                    placeholder="Your full name"
-                    error={errors.fullName}
-                  />
-                  <Field
-                    label="Email Address"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange("email")}
-                    placeholder="you@company.com"
-                    error={errors.email}
-                  />
+            {/* Trust pills */}
+            <div className="flex flex-wrap gap-3 lg:flex-col lg:items-end">
+              {[
+                { Icon: CheckCircle2, text: "No commitment required" },
+                { Icon: Clock3,       text: "Reply within 24 hours"  },
+                { Icon: Globe2,       text: "Remote-first team"       },
+              ].map(({ Icon, text }) => (
+                <div key={text} className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 py-2 text-xs font-heading font-semibold text-white/70 backdrop-blur-sm">
+                  <Icon className="h-3.5 w-3.5 text-sky-400" />{text}
                 </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="WhatsApp / Phone"
-                    value={form.whatsapp}
-                    onChange={handleChange("whatsapp")}
-                    placeholder="+44..., +1..., +92..."
-                    error={errors.whatsapp}
-                  />
-                  <Field
-                    label="Company / Project Name"
-                    value={form.company}
-                    onChange={handleChange("company")}
-                    placeholder="Optional"
-                  />
-                </div>
-
-                <OptionGroup
-                  label="What do you need built?"
-                  value={form.serviceType}
-                  onChange={handleChange("serviceType")}
-                  options={serviceOptions}
-                />
-
-                <div className="grid gap-5 lg:grid-cols-3">
-                  <SelectField
-                    label="Approximate Budget"
-                    value={form.budget}
-                    onChange={handleSelectChange("budget")}
-                    options={budgetOptions}
-                  />
-                  <SelectField
-                    label="When do you want to start?"
-                    value={form.timeline}
-                    onChange={handleSelectChange("timeline")}
-                    options={timelineOptions}
-                  />
-                  <SelectField
-                    label="How did you find us?"
-                    value={form.source}
-                    onChange={handleSelectChange("source")}
-                    options={sourceOptions}
-                  />
-                </div>
-
-                <div>
-                  <label className="mb-2 block text-sm font-heading font-semibold text-white/90">
-                    Briefly describe your project or idea
-                  </label>
-                  <textarea
-                    rows={5}
-                    value={form.description}
-                    onChange={handleChange("description")}
-                    placeholder="For example: I want to build a Flutter app for a health startup, with authentication, subscriptions, and an admin dashboard."
-                    className="w-full rounded-2xl border border-white/12 bg-[#102441] px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-300/30"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="btn-brand inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-4 text-sm font-heading font-bold"
-                >
-                  Review & Send Your Brief
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-
-                <p className="text-xs text-white/60">
-                  We prepare your project brief for the next step and route you to the fastest contact option.
-                </p>
-              </form>
+              ))}
             </div>
           </div>
         </div>
+      </div>
 
+      {/* ── Main content ── */}
+      <div className="mx-auto max-w-screen-xl px-6 py-16 sm:px-10 lg:px-16">
+        <div className="grid gap-8 lg:grid-cols-[3fr_2fr] lg:items-start">
+
+          {/* ── Form card ── */}
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="border-b border-slate-100 bg-gradient-to-r from-slate-50 to-white px-8 py-6">
+              <h2 className="font-heading text-xl font-extrabold text-[#0a1f3d]">Your project brief</h2>
+              <p className="mt-1 text-sm text-slate-500">Fill this in and we'll review it before your call.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="grid gap-6 px-8 py-7">
+
+              {/* Contact details */}
+              <div>
+                <p className="mb-4 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-[#2d8fcf]">01 · Your Details</p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <LightField label="Full Name"      value={form.fullName} onChange={handleChange("fullName")} placeholder="Your full name"    error={errors.fullName} />
+                  <LightField label="Email Address"  type="email" value={form.email} onChange={handleChange("email")} placeholder="you@company.com" error={errors.email} />
+                </div>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                  <LightField label="WhatsApp / Phone"      value={form.whatsapp} onChange={handleChange("whatsapp")} placeholder="+44... / +1... / +92..." error={errors.whatsapp} />
+                  <LightField label="Company / Project Name" value={form.company}  onChange={handleChange("company")}  placeholder="Optional" />
+                </div>
+              </div>
+
+              {/* Service type */}
+              <div>
+                <p className="mb-4 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-[#2d8fcf]">02 · What Do You Need Built?</p>
+                <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+                  {serviceOptions.map((option) => (
+                    <label
+                      key={option}
+                      className={`cursor-pointer rounded-xl border px-3.5 py-3 text-[13px] font-heading font-semibold transition-all ${
+                        form.serviceType === option
+                          ? "border-[#1a4a82]/35 bg-[#1a4a82]/5 text-[#0a1f3d] shadow-sm"
+                          : "border-slate-200 bg-white text-slate-500 hover:border-[#1a4a82]/20 hover:bg-slate-50"
+                      }`}
+                    >
+                      <input type="radio" name="serviceType" value={option} checked={form.serviceType === option} onChange={handleChange("serviceType")} className="sr-only" />
+                      {option}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Budget / Timeline / Source */}
+              <div>
+                <p className="mb-4 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-[#2d8fcf]">03 · Project Details</p>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  <LightSelect label="Approximate Budget"     value={form.budget}   onChange={handleSelectChange("budget")}   options={budgetOptions}   />
+                  <LightSelect label="When to start?"         value={form.timeline} onChange={handleSelectChange("timeline")} options={timelineOptions} />
+                  <LightSelect label="How did you find us?"   value={form.source}   onChange={handleSelectChange("source")}   options={sourceOptions}   />
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <p className="mb-4 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-[#2d8fcf]">04 · Project Brief</p>
+                <label className="mb-2 block text-[13px] font-heading font-semibold text-[#0a1f3d]">
+                  Describe your project or idea
+                </label>
+                <textarea
+                  rows={5}
+                  value={form.description}
+                  onChange={handleChange("description")}
+                  placeholder="E.g. I want to build a Flutter app for a health startup — authentication, subscriptions, and an admin dashboard. Early MVP stage."
+                  className="w-full resize-none rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-sm leading-relaxed text-[#0a1f3d] placeholder:text-slate-400 focus:border-[#1a4a82]/30 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#1a4a82]/20 transition-all"
+                />
+              </div>
+
+              {/* Submit */}
+              <div>
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2.5 rounded-xl bg-gradient-to-r from-[#0a1f3d] via-[#1a4a82] to-[#2d8fcf] px-6 py-4 text-sm font-heading font-bold text-white shadow-[0_6px_24px_-8px_rgba(26,74,130,0.5)] transition hover:brightness-110 hover:-translate-y-0.5"
+                >
+                  <Send className="h-4 w-4" />
+                  Review &amp; Send My Brief
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+                <p className="mt-3 text-center text-[12px] text-slate-400">
+                  We'll review your brief and route you to the fastest contact option.
+                </p>
+              </div>
+
+            </form>
+          </div>
+
+          {/* ── Sidebar ── */}
+          <div className="space-y-4 lg:sticky lg:top-28">
+
+            {/* What happens next */}
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#071629] to-[#1a4a82] p-7 shadow-[0_20px_60px_-20px_rgba(26,74,130,0.55)]">
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:22px_22px]" />
+              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-sky-500/20 blur-[55px]" />
+
+              <div className="relative">
+                <p className="mb-5 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-sky-400/80">What happens next?</p>
+                <div className="space-y-5">
+                  {nextSteps.map(({ Icon, title, desc }, i) => (
+                    <div key={title} className="flex gap-4">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+                        <Icon className="h-4 w-4 text-sky-300" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-heading font-extrabold text-white/30">0{i + 1}</span>
+                          <p className="font-heading text-[13px] font-bold text-white">{title}</p>
+                        </div>
+                        <p className="mt-0.5 text-[12px] leading-relaxed text-white/50">{desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="my-6 h-px bg-white/10" />
+
+                {/* Response time */}
+                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3.5 py-2">
+                  <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />
+                  <span className="text-xs font-heading font-semibold text-emerald-300">We reply within 24 hours</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Just a quick question? */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#1a4a82]/10">
+                  <MessageCircle className="h-4 w-4 text-[#1a4a82]" />
+                </div>
+                <div>
+                  <p className="font-heading text-[13px] font-bold text-[#0a1f3d]">Just have a quick question?</p>
+                  <p className="text-[12px] text-slate-500">Use our Contact page instead — it's faster.</p>
+                </div>
+              </div>
+              <Link
+                to="/contact"
+                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#1a4a82]/20 bg-[#1a4a82]/5 py-2.5 text-[13px] font-heading font-bold text-[#1a4a82] transition hover:bg-[#1a4a82]/10"
+              >
+                Go to Contact Us <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            {/* Also send via */}
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p className="mb-3 text-[10px] font-heading font-bold uppercase tracking-[0.22em] text-slate-400">Send brief directly via</p>
+              <div className="flex gap-2">
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-[#25D366] py-2.5 text-[13px] font-heading font-bold text-white transition hover:brightness-110"
+                >
+                  <MessageCircle className="h-3.5 w-3.5" />WhatsApp
+                </a>
+                <a
+                  href={gmailHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 py-2.5 text-[13px] font-heading font-bold text-slate-600 transition hover:bg-slate-100"
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* ── Calendly embed ── */}
         {siteConfig.socialLinks.calendly && (
-          <CalendlyInlineEmbed url={siteConfig.socialLinks.calendly} className="mt-8" />
+          <div className="mt-12">
+            <div className="mb-6 text-center">
+              <p className="font-heading text-xs font-bold uppercase tracking-[0.22em] text-[#2d8fcf]">Or pick a time directly</p>
+              <h3 className="mt-1 font-heading text-xl font-extrabold text-[#0a1f3d]">See open slots on our calendar</h3>
+            </div>
+            <CalendlyInlineEmbed url={siteConfig.socialLinks.calendly} className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm" />
+          </div>
         )}
       </div>
+
     </div>
   );
 };
 
-type FieldProps = {
-  label: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  error?: string;
-  type?: string;
-};
+/* ── Light-theme field components ── */
 
-const Field = ({ label, value, onChange, placeholder, error, type = "text" }: FieldProps) => (
+type FieldProps = {
+  label: string; value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string; error?: string; type?: string;
+};
+const LightField = ({ label, value, onChange, placeholder, error, type = "text" }: FieldProps) => (
   <div>
-    <label className="mb-2 block text-sm font-heading font-semibold text-white/90">{label}</label>
+    <label className="mb-2 block text-[13px] font-heading font-semibold text-[#0a1f3d]">{label}</label>
     <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className={`w-full rounded-2xl border px-4 py-3 text-sm text-white placeholder:text-white/35 focus:outline-none focus:ring-2 focus:ring-sky-300/30 ${
-        error
-          ? "border-red-300/70 bg-[#2a1830]"
-          : "border-white/12 bg-[#102441] focus:border-sky-300"
+      type={type} value={value} onChange={onChange} placeholder={placeholder}
+      className={`w-full rounded-xl border px-4 py-3 text-sm text-[#0a1f3d] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1a4a82]/20 transition-all ${
+        error ? "border-red-300 bg-red-50/30" : "border-slate-200 bg-slate-50/50 focus:border-[#1a4a82]/30 focus:bg-white"
       }`}
     />
-    {error && <p className="mt-2 text-xs text-red-200">{error}</p>}
+    {error && <p className="mt-1.5 text-xs text-red-500">{error}</p>}
   </div>
 );
 
-type SelectFieldProps = {
-  label: string;
-  value: string;
-  onChange: (value: string) => void;
-  options: string[];
-};
-
-const SelectField = ({ label, value, onChange, options }: SelectFieldProps) => (
+type SelectProps = { label: string; value: string; onChange: (v: string) => void; options: string[] };
+const LightSelect = ({ label, value, onChange, options }: SelectProps) => (
   <div>
-    <label className="mb-2 block text-sm font-heading font-semibold text-white/90">{label}</label>
+    <label className="mb-2 block text-[13px] font-heading font-semibold text-[#0a1f3d]">{label}</label>
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="h-auto rounded-2xl border border-white/12 bg-[#102441] px-4 py-3 text-left text-sm text-white ring-offset-transparent focus:ring-2 focus:ring-sky-300/30 focus:ring-offset-0 data-[placeholder]:text-white/35">
+      <SelectTrigger className="h-auto rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-3 text-left text-sm text-[#0a1f3d] ring-offset-transparent focus:border-[#1a4a82]/30 focus:ring-2 focus:ring-[#1a4a82]/20 focus:ring-offset-0">
         <SelectValue />
       </SelectTrigger>
-      <SelectContent
-        className="rounded-2xl border border-sky-300/20 bg-[#102441] text-white shadow-[0_24px_60px_-28px_rgba(0,0,0,0.7)]"
-        position="popper"
-      >
-        {options.map((option) => (
-          <SelectItem
-            key={option}
-            value={option}
-            className="rounded-xl py-2.5 pl-8 pr-3 text-sm text-white/85 focus:bg-sky-400/15 focus:text-white"
-          >
-            {option}
+      <SelectContent className="rounded-xl border border-slate-200 bg-white shadow-lg" position="popper">
+        {options.map((opt) => (
+          <SelectItem key={opt} value={opt} className="rounded-lg py-2.5 text-sm text-slate-700 focus:bg-[#1a4a82]/8 focus:text-[#0a1f3d]">
+            {opt}
           </SelectItem>
         ))}
       </SelectContent>
     </Select>
-  </div>
-);
-
-type OptionGroupProps = {
-  label: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  options: string[];
-};
-
-const OptionGroup = ({ label, value, onChange, options }: OptionGroupProps) => (
-  <div>
-    <label className="mb-3 block text-sm font-heading font-semibold text-white/90">{label}</label>
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {options.map((option) => (
-        <label
-          key={option}
-          className={`cursor-pointer rounded-2xl border px-4 py-3 text-sm transition ${
-            value === option
-              ? "border-sky-300/70 bg-sky-400/15 text-white"
-              : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
-          }`}
-        >
-          <input type="radio" name={label} value={option} checked={value === option} onChange={onChange} className="sr-only" />
-          {option}
-        </label>
-      ))}
-    </div>
   </div>
 );
 
