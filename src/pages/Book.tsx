@@ -1,4 +1,6 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import HeroParticleCanvas from "@/components/HeroParticleCanvas";
+import { useHeroSpotlight } from "@/hooks/useHeroSpotlight";
 import {
   ArrowLeft, ArrowRight, CalendarDays, CheckCircle2,
   Clock3, Globe2, MessageCircle, Search, Send, Sparkles,
@@ -37,6 +39,7 @@ const BookPage = () => {
     "Tell us about your project and book a free 30-minute strategy call.",
   );
 
+  const heroRef = useHeroSpotlight<HTMLDivElement>();
   const navigate = useNavigate();
   const [form, setForm]     = useState<BookingFormData>(initialBookingForm);
   const [errors, setErrors] = useState<ErrorState>({});
@@ -69,7 +72,8 @@ const BookPage = () => {
     <div className="min-h-screen bg-slate-50">
 
       {/* ── Hero ── */}
-      <div className="hero-section-bg relative overflow-hidden pb-20 pt-28">
+      <div ref={heroRef} className="hero-section-bg hero-spotlight relative overflow-hidden pb-20 pt-28">
+        <HeroParticleCanvas />
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:48px_48px]" />
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[440px] w-[440px] rounded-full bg-[#1a4a82]/25 blur-[100px]" />
         <div className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-sky-600/15 blur-[90px]" />
@@ -89,7 +93,7 @@ const BookPage = () => {
               </span>
               <h1 className="mt-5 font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl">
                 Tell us about the<br className="hidden sm:block" />
-                <span className="bg-gradient-to-r from-sky-400 via-[#3a8fd4] to-[#2d6fb0] bg-clip-text text-transparent">
+                <span className="animate-hero-glow bg-gradient-to-r from-sky-400 via-[#3a8fd4] to-[#2d6fb0] bg-clip-text text-transparent">
                   {" "}product you want to build.
                 </span>
               </h1>

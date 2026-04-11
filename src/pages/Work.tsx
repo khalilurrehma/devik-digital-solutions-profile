@@ -3,10 +3,13 @@ import { ArrowLeft, ArrowRight, Briefcase, CalendarDays, SlidersHorizontal } fro
 import { Link } from "react-router-dom";
 import { ProjectCard, allProjects } from "@/components/PortfolioPage";
 import { buildWhatsAppHref } from "@/lib/siteConfig";
+import HeroParticleCanvas from "@/components/HeroParticleCanvas";
+import { useHeroSpotlight } from "@/hooks/useHeroSpotlight";
 
 const FILTER_TAGS = ["All", "Mobile", "Web", "HealthTech", "EdTech"] as const;
 
 const WorkPage = () => {
+  const heroRef = useHeroSpotlight<HTMLElement>();
   const [active, setActive] = useState<string>("All");
 
   const filtered = active === "All"
@@ -17,7 +20,8 @@ const WorkPage = () => {
     <div className="min-h-screen bg-white">
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-20 pt-36">
+      <section ref={heroRef} className="hero-spotlight relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-20 pt-36">
+        <HeroParticleCanvas />
         {/* Grid texture */}
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:56px_56px]" />
         {/* Glow */}
@@ -40,7 +44,7 @@ const WorkPage = () => {
 
           <h1 className="mt-5 max-w-3xl font-heading text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
             Products We've{" "}
-            <span className="bg-gradient-to-r from-sky-400 to-[#2d8fcf] bg-clip-text text-transparent">
+            <span className="animate-hero-glow bg-gradient-to-r from-sky-400 to-[#2d8fcf] bg-clip-text text-transparent">
               Shipped
             </span>
           </h1>

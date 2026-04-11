@@ -1,6 +1,8 @@
 import { ArrowLeft, ArrowRight, CalendarDays, Check, MessageCircle, Sparkles, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { buildWhatsAppHref } from "@/lib/siteConfig";
+import HeroParticleCanvas from "@/components/HeroParticleCanvas";
+import { useHeroSpotlight } from "@/hooks/useHeroSpotlight";
 
 type Tier = {
   name: string;
@@ -223,11 +225,14 @@ const TierCard = ({ tier, gradient }: { tier: Tier; gradient: string }) => (
   </div>
 );
 
-const PricingFullPage = () => (
+const PricingFullPage = () => {
+  const heroRef = useHeroSpotlight<HTMLElement>();
+  return (
   <div className="min-h-screen bg-slate-50">
 
     {/* ── Hero ── */}
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-24 pt-36">
+    <section ref={heroRef} className="hero-spotlight relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-24 pt-36">
+      <HeroParticleCanvas />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:56px_56px]" />
       <div className="pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] rounded-full bg-[#1a4a82]/25 blur-[100px]" />
       <div className="pointer-events-none absolute -right-20 bottom-0 h-[300px] w-[300px] rounded-full bg-sky-600/15 blur-[80px]" />
@@ -244,14 +249,14 @@ const PricingFullPage = () => (
         </span>
         <h1 className="mt-5 max-w-3xl font-heading text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
           Transparent{" "}
-          <span className="bg-gradient-to-r from-sky-400 to-[#2d8fcf] bg-clip-text text-transparent">Pricing</span>
+          <span className="animate-hero-glow bg-gradient-to-r from-sky-400 to-[#2d8fcf] bg-clip-text text-transparent">Pricing</span>
         </h1>
         <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/45">
           Budget anchors, not hard ceilings. Every project gets a custom scope — these packages
           exist so you can gauge fit before reaching out.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] px-6 py-3 text-sm font-heading font-bold text-white shadow-lg transition hover:brightness-110">
+          <Link to="/book" className="animate-glow-pulse inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] px-6 py-3 text-sm font-heading font-bold text-white shadow-lg transition hover:brightness-110">
             <CalendarDays className="h-4 w-4" /> Book a Free Call
           </Link>
           <a href={buildWhatsAppHref("Hi, I'd like to discuss pricing for my project.")} target="_blank" rel="noreferrer"
