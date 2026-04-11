@@ -341,6 +341,7 @@ const PricingFullPage = () => {
 
     </div>
   </div>
-);
+  );
+};
 
 export default PricingFullPage;
