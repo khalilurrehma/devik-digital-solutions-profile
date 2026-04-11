@@ -15,10 +15,15 @@ const navLinks = [
   { label: "Contact",      href: "/contact"      },
 ];
 
+const sectionIds = navLinks
+  .filter((l) => l.href.startsWith("#"))
+  .map((l) => l.href.slice(1));
+
 const StickyNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled]     = useState(false);
+  const [activeSection, setActive]  = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -26,6 +31,23 @@ const StickyNav = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Track which section is in view
+  useEffect(() => {
+    if (location.pathname !== "/") { setActive(""); return; }
+    const observers: IntersectionObserver[] = [];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActive(id); },
+        { rootMargin: "-40% 0px -55% 0px" },
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [location.pathname]);
 
   const handleNav = (href: string) => {
     if (!href.startsWith("#")) {
@@ -75,19 +97,27 @@ const StickyNav = () => {
 
         {/* Desktop nav links */}
         <nav className="hidden items-center gap-6 lg:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
-              className={`relative text-[13px] font-heading font-semibold transition-colors
-                after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:rounded-full
-                after:bg-[#1a4a82] after:transition-all after:duration-300 hover:after:w-full
-                ${scrolled ? "text-[#374151] hover:text-[#0a1f3d]" : "text-white/80 hover:text-white"}`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const sectionId = link.href.startsWith("#") ? link.href.slice(1) : null;
+            const isActive  = sectionId ? activeSection === sectionId : location.pathname === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => { e.preventDefault(); handleNav(link.href); }}
+                className={`relative text-[13px] font-heading font-semibold transition-colors
+                  after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:rounded-full
+                  after:bg-[#1a4a82] after:transition-all after:duration-300
+                  ${isActive ? "after:w-full" : "after:w-0 hover:after:w-full"}
+                  ${scrolled
+                    ? isActive ? "text-[#0a1f3d]" : "text-[#374151] hover:text-[#0a1f3d]"
+                    : isActive ? "text-white"    : "text-white/70 hover:text-white"
+                  }`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Book a Call CTA — desktop only */}

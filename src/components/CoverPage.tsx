@@ -217,6 +217,15 @@ const CoverPage = () => {
         </div>
       </div>
 
+      {/* ── Scroll indicator ── */}
+      <div className="pointer-events-none absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1.5" aria-hidden>
+        <span className="text-[9px] font-heading font-bold uppercase tracking-[0.28em] text-white/25">Scroll</span>
+        <div className="relative h-7 w-px overflow-hidden rounded-full bg-white/10">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-b from-sky-400 to-transparent animate-scroll-line" />
+        </div>
+        <div className="h-1.5 w-1.5 rounded-full bg-sky-400/50 animate-scroll-dot" />
+      </div>
+
       {/* Bottom fade */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#040e1c] to-transparent" />
     </section>

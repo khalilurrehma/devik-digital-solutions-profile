@@ -1,6 +1,7 @@
 import { Bot, CheckCircle2, Cloud, Code2, Globe, Palette, Server, Smartphone } from "lucide-react";
 import DocumentPage from "@/components/DocumentPage";
 import HeadingUnderline from "@/components/ui/HeadingUnderline";
+import { useCardTilt } from "@/hooks/useCardTilt";
 
 const services = [
   {
@@ -93,6 +94,51 @@ const services = [
   },
 ];
 
+type Service = typeof services[number];
+
+/** Individual card — own tilt hook instance so each card tilts independently */
+const ServiceCard = ({ s, idx }: { s: Service; idx: number }) => {
+  const { ref, onMouseMove, onMouseLeave } = useCardTilt(6);
+  const Icon = s.icon;
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      data-reveal={`reveal-scale reveal-delay-${(idx % 3) + 1}`}
+      className="card-spotlight group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-[#1a4a82]/30 hover:shadow-[0_16px_48px_-12px_rgba(26,74,130,0.22)]"
+    >
+      {/* Top gradient accent */}
+      <div className={`h-[3px] w-full bg-gradient-to-r ${s.gradient}`} />
+
+      <div className="relative z-10 flex flex-1 flex-col p-6">
+        {/* Icon + number row */}
+        <div className="mb-4 flex items-start justify-between">
+          <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.gradient} shadow-sm transition-transform duration-300 group-hover:scale-110`}>
+            <Icon className="h-5 w-5 text-white" />
+          </div>
+          <span className="font-mono text-[11px] font-bold text-slate-300">{s.id}</span>
+        </div>
+
+        {/* Title + tagline */}
+        <h3 className="font-heading text-[16px] font-extrabold text-[#0a1f3d]">{s.title}</h3>
+        <p className="mb-5 mt-1 text-[13px] leading-snug text-slate-400">{s.tagline}</p>
+
+        {/* Feature list */}
+        <ul className="mt-auto space-y-2">
+          {s.features.map((f) => (
+            <li key={f} className="flex items-start gap-2.5">
+              <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#2d8fcf]" />
+              <span className="text-[12.5px] leading-snug text-slate-600">{f}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 const ServicesPage = () => (
   <div id="services" className="section-target">
     <DocumentPage className="bg-slate-50">
@@ -114,43 +160,9 @@ const ServicesPage = () => (
 
       {/* ── Service cards grid ── */}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((s, idx) => {
-          const Icon = s.icon;
-          return (
-            <div
-              key={s.id}
-              data-reveal={`reveal-scale reveal-delay-${(idx % 3) + 1}`}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#1a4a82]/30 hover:shadow-[0_12px_40px_-12px_rgba(26,74,130,0.2)]"
-            >
-              {/* Top gradient accent */}
-              <div className={`h-[3px] w-full bg-gradient-to-r ${s.gradient}`} />
-
-              <div className="flex flex-1 flex-col p-6">
-                {/* Icon + number row */}
-                <div className="mb-4 flex items-start justify-between">
-                  <div className={`inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br ${s.gradient} shadow-sm`}>
-                    <Icon className="h-5 w-5 text-white" />
-                  </div>
-                  <span className="font-mono text-[11px] font-bold text-slate-300">{s.id}</span>
-                </div>
-
-                {/* Title + tagline */}
-                <h3 className="font-heading text-[16px] font-extrabold text-[#0a1f3d]">{s.title}</h3>
-                <p className="mt-1 mb-5 text-[13px] text-slate-400 leading-snug">{s.tagline}</p>
-
-                {/* Feature list */}
-                <ul className="mt-auto space-y-2">
-                  {s.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#2d8fcf]" />
-                      <span className="text-[12.5px] leading-snug text-slate-600">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          );
-        })}
+        {services.map((s, idx) => (
+          <ServiceCard key={s.id} s={s} idx={idx} />
+        ))}
       </div>
 
     </DocumentPage>

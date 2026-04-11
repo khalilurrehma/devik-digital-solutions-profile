@@ -25,7 +25,7 @@ const StatsBar = () => (
             <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] opacity-60 transition-opacity duration-300 group-hover:opacity-100" />
 
             <div className="mb-3 flex justify-center">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#1a4a82] to-[#2d8fcf] shadow-sm">
+              <div className="bounce-on-hover flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#1a4a82] to-[#2d8fcf] shadow-sm">
                 <stat.Icon className="h-5 w-5 text-white" />
               </div>
             </div>

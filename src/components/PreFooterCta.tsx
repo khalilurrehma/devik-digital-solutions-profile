@@ -91,7 +91,7 @@ const PreFooterCta = () => {
               </div>
               <button
                 type="submit"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#1a4a82] to-[#2d8fcf] px-5 py-3 text-sm font-heading font-bold text-white shadow-[0_4px_16px_-4px_rgba(26,74,130,0.4)] transition hover:brightness-110 hover:-translate-y-0.5"
+                className="btn-brand-animated inline-flex shrink-0 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-heading font-bold text-white shadow-[0_4px_16px_-4px_rgba(26,74,130,0.4)] transition hover:-translate-y-0.5"
               >
                 <Send className="h-3.5 w-3.5" />
                 Subscribe

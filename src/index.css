@@ -682,6 +682,61 @@
   .heading-underline .hu-dot  { animation: none; opacity: 0.55; }
 }
 
+/* ── Card 3D tilt + cursor spotlight border ── */
+.card-spotlight {
+  --sx: 50%;
+  --sy: 50%;
+  --so: 0;
+  will-change: transform;
+  transition: transform 0.12s ease, box-shadow 0.28s ease;
+}
+.card-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    200px circle at var(--sx) var(--sy),
+    rgba(56, 189, 248, 0.13),
+    transparent 65%
+  );
+  opacity: var(--so);
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+  z-index: 1;
+}
+/* Dark card variant (pricing) */
+.card-spotlight-dark::after {
+  background: radial-gradient(
+    220px circle at var(--sx) var(--sy),
+    rgba(125, 211, 252, 0.18),
+    transparent 65%
+  );
+}
+
+/* ── Page fade-up transition ── */
+@keyframes page-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-transition {
+  animation: page-fade-up 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Stat icon bounce on hover ── */
+@keyframes stat-icon-bounce {
+  0%, 100% { transform: translateY(0)   scale(1);    }
+  28%       { transform: translateY(-9px) scale(1.18); }
+  55%       { transform: translateY(-4px) scale(1.08); }
+  75%       { transform: translateY(-7px) scale(1.13); }
+}
+.bounce-on-hover {
+  transition: transform 0.15s ease;
+}
+.group:hover .bounce-on-hover {
+  animation: stat-icon-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
 /* ── Hero cursor spotlight ── */
 .hero-spotlight {
   --spotlight-x: 50%;
