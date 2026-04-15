@@ -5,12 +5,17 @@ import { ProjectCard, allProjects } from "@/components/PortfolioPage";
 import { buildWhatsAppHref } from "@/lib/siteConfig";
 import HeroParticleCanvas from "@/components/HeroParticleCanvas";
 import { useHeroSpotlight } from "@/hooks/useHeroSpotlight";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 const FILTER_TAGS = ["All", "Mobile", "Web", "HealthTech", "EdTech"] as const;
 
 const WorkPage = () => {
   const heroRef = useHeroSpotlight<HTMLElement>();
   const [active, setActive] = useState<string>("All");
+  const pageMeta = usePageMeta(
+    "Our Work | DEVIK DIGITAL SOLUTIONS",
+    "Browse 500+ shipped projects — web apps, mobile apps, AI tools, and SaaS platforms built by DEVIK DIGITAL SOLUTIONS."
+  );
 
   const filtered = active === "All"
     ? allProjects
@@ -18,6 +23,7 @@ const WorkPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {pageMeta}
 
       {/* ── Hero ── */}
       <section ref={heroRef} className="hero-spotlight relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-20 pt-36">

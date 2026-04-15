@@ -18,7 +18,7 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 const Index = () => {
   const location = useLocation();
 
-  usePageMeta(
+  const pageMeta = usePageMeta(
     "DEVIK DIGITAL SOLUTIONS | Web, Mobile & AI Development",
     "DEVIK DIGITAL SOLUTIONS builds web applications, mobile apps, backend systems, and AI-enabled products for startups, agencies, and growing companies.",
   );
@@ -40,6 +40,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {pageMeta}
       <CoverPage />
       <StatsBar />
       <BrandsStrip />

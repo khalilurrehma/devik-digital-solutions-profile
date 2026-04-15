@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { buildWhatsAppHref } from "@/lib/siteConfig";
 import HeroParticleCanvas from "@/components/HeroParticleCanvas";
 import { useHeroSpotlight } from "@/hooks/useHeroSpotlight";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 type Tier = {
   name: string;
@@ -227,8 +228,13 @@ const TierCard = ({ tier, gradient }: { tier: Tier; gradient: string }) => (
 
 const PricingFullPage = () => {
   const heroRef = useHeroSpotlight<HTMLElement>();
+  const pageMeta = usePageMeta(
+    "Pricing | DEVIK DIGITAL SOLUTIONS",
+    "Transparent pricing for web, mobile, and AI development. View packages for startups, agencies, and scale-ups."
+  );
   return (
   <div className="min-h-screen bg-slate-50">
+    {pageMeta}
 
     {/* ── Hero ── */}
     <section ref={heroRef} className="hero-spotlight relative overflow-hidden bg-gradient-to-br from-[#040e1c] via-[#071629] to-[#0a1f3d] pb-24 pt-36">

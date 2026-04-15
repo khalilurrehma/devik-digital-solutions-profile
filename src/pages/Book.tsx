@@ -34,7 +34,7 @@ const nextSteps = [
 ];
 
 const BookPage = () => {
-  usePageMeta(
+  const pageMeta = usePageMeta(
     "Book a Strategy Call | DEVIK DIGITAL SOLUTIONS",
     "Tell us about your project and book a free 30-minute strategy call.",
   );
@@ -70,6 +70,7 @@ const BookPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {pageMeta}
 
       {/* ── Hero ── */}
       <div ref={heroRef} className="hero-section-bg hero-spotlight relative overflow-hidden pb-20 pt-28">

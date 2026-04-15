@@ -36,7 +36,7 @@ const validate = (f: Form): Errors => {
 };
 
 const ContactFullPage = () => {
-  usePageMeta(
+  const pageMeta = usePageMeta(
     "Contact | DEVIK DIGITAL SOLUTIONS",
     "Send us a message about your project. We respond within 24 hours.",
   );
@@ -88,7 +88,7 @@ const ContactFullPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
-
+      {pageMeta}
       {/* ── Hero ── */}
       <div className="hero-section-bg relative overflow-hidden pb-20 pt-28">
         {/* Grid texture */}

@@ -12,7 +12,7 @@ import {
 import { usePageMeta } from "@/hooks/usePageMeta";
 
 const ThankYouPage = () => {
-  usePageMeta(
+  const pageMeta = usePageMeta(
     "Next Step | DEVIK DIGITAL SOLUTIONS",
     "Continue your project inquiry with DEVIK DIGITAL SOLUTIONS using WhatsApp, email, or a calendar link."
   );
@@ -21,6 +21,7 @@ const ThankYouPage = () => {
   const latestLead =
     (location.state as BookingFormData | null) ??
     (() => {
+      if (typeof window === "undefined") return null;
       const raw = localStorage.getItem(latestLeadStorageKey);
       return raw ? (JSON.parse(raw) as BookingFormData) : null;
     })();
@@ -36,6 +37,7 @@ const ThankYouPage = () => {
 
   return (
     <div className="min-h-screen bg-background px-4 pb-6 pt-24 sm:px-6 lg:px-8">
+      {pageMeta}
       <div className="mx-auto max-w-[1080px]">
         <div className="rounded-[32px] border border-primary/10 bg-[radial-gradient(circle_at_top_left,_rgba(21,77,127,0.12),_transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(245,249,253,0.96)_100%)] p-6 shadow-[0_32px_90px_-44px_rgba(8,24,46,0.5)] sm:p-8 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-start">

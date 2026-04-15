@@ -21,13 +21,14 @@ const articleSections = [
 ];
 
 const InsightArticlePage = () => {
-  usePageMeta(
+  const pageMeta = usePageMeta(
     "Multi-tenant SaaS Architecture | DEVIK DIGITAL SOLUTIONS",
     "A practical DEVIK DIGITAL SOLUTIONS article on structuring multi-tenant SaaS products with Next.js, PostgreSQL, and role-based access."
   );
 
   return (
     <div className="min-h-screen bg-background px-4 pb-6 pt-24 sm:px-6 lg:px-8">
+      {pageMeta}
       <article className="mx-auto max-w-[980px] rounded-[32px] border border-primary/10 bg-white/90 p-6 shadow-[0_30px_90px_-50px_rgba(8,24,46,0.45)] sm:p-8 lg:p-12">
         <Link
           to="/"
