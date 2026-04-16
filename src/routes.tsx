@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Outlet, useRouteError, isRouteErrorResponse } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider }                  from "@/components/ui/tooltip";
 import { Toaster }                          from "@/components/ui/toaster";
@@ -18,6 +18,18 @@ import NotFound        from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Catches vite-react-ssg static-loader fetch errors (e.g. stale hash after
+// a redeployment) and silently falls through so the page still renders.
+const RouteErrorBoundary = () => {
+  const error = useRouteError();
+  // If it's a real 404-status error, show NotFound. Otherwise just render
+  // the child outlet — the pre-rendered HTML content is already on screen.
+  if (isRouteErrorResponse(error) && error.status === 404) {
+    return <NotFound />;
+  }
+  return <Outlet />;
+};
+
 const RootLayout = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -34,6 +46,7 @@ export const routes: RouteObject[] = [
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteErrorBoundary />,
     children: [
       { index: true,  element: <Index /> },
       { path: "book",     element: <BookPage /> },
