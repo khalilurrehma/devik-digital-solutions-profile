@@ -168,26 +168,10 @@ const TestimonialsPage = () => (
 
     </DocumentPage>
 
-    {/* ── Mobile: swipeable card list ── */}
-    <div className="lg:hidden w-full bg-white py-4 px-4">
-      <div className="testimonial-swipe-track flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory">
-        {testimonials.map((t, i) => (
-          <div key={`mob-${i}`} className="snap-start shrink-0 w-[300px] first:pl-0 last:pr-4">
-            <TestimonialCard t={t} />
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 flex justify-center gap-1.5" aria-hidden>
-        {testimonials.map((_, i) => (
-          <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]/20" />
-        ))}
-      </div>
-    </div>
+    {/* ── Animated marquee rows — all screen sizes ── */}
+    <div className="w-full overflow-hidden bg-white py-4">
 
-    {/* ── Desktop: animated marquee rows — edge-to-edge on white ── */}
-    <div className="hidden lg:block w-full overflow-hidden bg-white py-4">
-
-      {/* Row 1 */}
+      {/* Row 1 — all screens */}
       <div className="testimonial-marquee mb-4">
         <div className="testimonial-fade-mask overflow-hidden">
           <div className="testimonial-track flex gap-4 px-4 py-2">
@@ -196,8 +180,8 @@ const TestimonialsPage = () => (
         </div>
       </div>
 
-      {/* Row 2 reverse */}
-      <div className="testimonial-marquee">
+      {/* Row 2 reverse — desktop only */}
+      <div className="testimonial-marquee hidden lg:block">
         <div className="testimonial-fade-mask overflow-hidden">
           <div className="testimonial-track-reverse flex gap-4 px-4 py-2">
             {row2.map((t, i) => <TestimonialCard key={`r2-${i}`} t={t} />)}

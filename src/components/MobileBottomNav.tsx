@@ -1,13 +1,14 @@
-import { Briefcase, CalendarDays, Home, MessageSquare, Tag } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import type { MouseEvent } from "react";
+import { Briefcase, CalendarDays, Home, MessageSquare, Star } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const TABS = [
-  { label: "Home",    Icon: Home,          href: "/"        },
-  { label: "Work",    Icon: Briefcase,     href: "/work"    },
-  { label: "Book",    Icon: CalendarDays,  href: "/book"    },
-  { label: "Pricing", Icon: Tag,           href: "/pricing" },
-  { label: "Contact", Icon: MessageSquare, href: "/contact" },
-] as const;
+  { label: "Home",    Icon: Home,          href: "/"               },
+  { label: "Work",    Icon: Briefcase,     href: "/work"           },
+  { label: "Book",    Icon: CalendarDays,  href: "/book"           },
+  { label: "Reviews", Icon: Star,          href: "/#testimonials"  },
+  { label: "Contact", Icon: MessageSquare, href: "/contact"        },
+];
 
 /**
  * Mobile app–style fixed bottom navigation bar.
@@ -16,6 +17,19 @@ const TABS = [
  */
 const MobileBottomNav = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const handleTabClick = (e: MouseEvent, href: string) => {
+    if (!href.includes("#")) return;
+    e.preventDefault();
+    const [path, hash] = href.split("#");
+    const basePath = path || "/";
+    if (pathname === basePath) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      navigate({ pathname: basePath, hash: `#${hash}` });
+    }
+  };
 
   return (
     <nav
@@ -29,7 +43,7 @@ const MobileBottomNav = () => {
       <div className="bg-[#040e1c]/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-sm items-end justify-around px-1 pb-2 pt-1">
           {TABS.map(({ label, Icon, href }) => {
-            const isActive = pathname === href;
+            const isActive = href.includes("#") ? false : pathname === href;
             const isBook   = href === "/book";
 
             if (isBook) {
@@ -60,6 +74,7 @@ const MobileBottomNav = () => {
               <Link
                 key={href}
                 to={href}
+                onClick={(e) => handleTabClick(e, href)}
                 className="flex flex-col items-center gap-0.5 px-3 py-1.5 transition-all active:scale-90 focus:outline-none"
               >
                 <Icon

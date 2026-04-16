@@ -80,8 +80,10 @@ const StickyNav = () => {
           onClick={() => { if (location.pathname === "/") window.scrollTo({ top: 0, behavior: "smooth" }); }}
           className="flex items-center gap-3"
         >
-          <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl shadow-md transition-all ${
-            scrolled ? "bg-white ring-1 ring-slate-200" : "bg-white"
+          <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl transition-all ${
+            scrolled
+              ? "bg-gradient-to-br from-[#0a1f3d] to-[#1a4a82] shadow-[0_4px_14px_-4px_rgba(26,74,130,0.5)]"
+              : "bg-white shadow-md"
           }`}>
             <img src={logo} alt={siteConfig.companyName} className="h-10 w-10 rounded-lg object-cover" />
           </div>
