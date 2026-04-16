@@ -375,6 +375,14 @@
     0 6px 14px -8px hsl(210 56% 20% / 0.2);
 }
 
+.testimonial-swipe-track {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.testimonial-swipe-track::-webkit-scrollbar {
+  display: none;
+}
+
 .testimonial-card {
   border-top: 3px solid hsl(var(--accent));
 }

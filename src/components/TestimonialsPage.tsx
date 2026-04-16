@@ -168,8 +168,24 @@ const TestimonialsPage = () => (
 
     </DocumentPage>
 
-    {/* ── Marquee zone — edge-to-edge on white ── */}
-    <div className="w-full overflow-hidden bg-white py-4">
+    {/* ── Mobile: swipeable card list ── */}
+    <div className="lg:hidden w-full bg-white py-4 px-4">
+      <div className="testimonial-swipe-track flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory">
+        {testimonials.map((t, i) => (
+          <div key={`mob-${i}`} className="snap-start shrink-0 w-[300px] first:pl-0 last:pr-4">
+            <TestimonialCard t={t} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex justify-center gap-1.5" aria-hidden>
+        {testimonials.map((_, i) => (
+          <span key={i} className="h-1.5 w-1.5 rounded-full bg-[#1a4a82]/20" />
+        ))}
+      </div>
+    </div>
+
+    {/* ── Desktop: animated marquee rows — edge-to-edge on white ── */}
+    <div className="hidden lg:block w-full overflow-hidden bg-white py-4">
 
       {/* Row 1 */}
       <div className="testimonial-marquee mb-4">

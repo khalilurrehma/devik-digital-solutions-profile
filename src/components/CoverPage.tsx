@@ -115,8 +115,8 @@ const CoverPage = () => {
 
             {/* Sub */}
             <p data-reveal="reveal reveal-delay-2" className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/50 sm:text-base">
-              Full-stack development team with 7+ years delivering React, Next.js, Flutter, Node.js,
-              and AI-powered systems for startups and agencies across the UK, EU, USA, UAE, and beyond.
+              We build websites &amp; web apps (Next.js / React), Android &amp; iOS mobile apps (Flutter),
+              backend systems (Node.js), and AI-powered tools — for startups and agencies across the UK, EU, USA, UAE, and beyond.
             </p>
 
             {/* CTAs */}
