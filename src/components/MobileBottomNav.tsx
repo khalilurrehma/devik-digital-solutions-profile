@@ -1,12 +1,12 @@
 import type { MouseEvent } from "react";
-import { Briefcase, CalendarDays, Home, MessageSquare, Star } from "lucide-react";
+import { CalendarDays, Home, MessageSquare, Star, Tag } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const TABS = [
   { label: "Home",    Icon: Home,          href: "/"               },
-  { label: "Work",    Icon: Briefcase,     href: "/work"           },
-  { label: "Book",    Icon: CalendarDays,  href: "/book"           },
   { label: "Reviews", Icon: Star,          href: "/#testimonials"  },
+  { label: "Book",    Icon: CalendarDays,  href: "/book"           },
+  { label: "Pricing", Icon: Tag,           href: "/pricing"        },
   { label: "Contact", Icon: MessageSquare, href: "/contact"        },
 ];
 
