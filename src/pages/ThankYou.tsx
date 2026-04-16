@@ -13,8 +13,9 @@ import { usePageMeta } from "@/hooks/usePageMeta";
 
 const ThankYouPage = () => {
   const pageMeta = usePageMeta(
-    "Next Step | DEVIK DIGITAL SOLUTIONS",
-    "Continue your project inquiry with DEVIK DIGITAL SOLUTIONS using WhatsApp, email, or a calendar link."
+    "Your Project Brief Is Ready | DEVIK DIGITAL SOLUTIONS",
+    "Your project brief is prepared. Send it to the DEVIK DIGITAL SOLUTIONS team via WhatsApp, email, or book a strategy call to start your build.",
+    "noindex, nofollow"
   );
 
   const location = useLocation();

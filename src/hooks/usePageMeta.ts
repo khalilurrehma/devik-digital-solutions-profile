@@ -8,12 +8,17 @@ import { createElement } from "react";
  *
  * Usage: return <> {usePageMeta("Title", "Desc")} <yourJSX /> </>
  */
-export const usePageMeta = (title: string, description: string) =>
+export const usePageMeta = (
+  title: string,
+  description: string,
+  robots = "index, follow",
+) =>
   createElement(
     Helmet,
     null,
     createElement("title", null, title),
     createElement("meta", { name: "description", content: description }),
+    createElement("meta", { name: "robots", content: robots }),
     createElement("meta", { property: "og:title",       content: title }),
     createElement("meta", { property: "og:description", content: description }),
     createElement("meta", { name: "twitter:title",       content: title }),
