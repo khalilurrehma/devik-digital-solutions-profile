@@ -14,6 +14,9 @@ import PricingFullPage from "./pages/Pricing";
 import ContactFullPage from "./pages/Contact";
 import ThankYouPage    from "./pages/ThankYou";
 import InsightArticle  from "./pages/InsightArticle";
+import PrivacyPage     from "./pages/Privacy";
+import TermsPage       from "./pages/Terms";
+import DataDeletionPage from "./pages/DataDeletion";
 import NotFound        from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +58,9 @@ export const routes: RouteObject[] = [
       { path: "contact",  element: <ContactFullPage /> },
       { path: "thank-you", element: <ThankYouPage /> },
       { path: "insights/multi-tenant-saas-architecture", element: <InsightArticle /> },
+      { path: "privacy", element: <PrivacyPage /> },
+      { path: "terms", element: <TermsPage /> },
+      { path: "data-deletion", element: <DataDeletionPage /> },
     ],
   },
   { path: "*", element: <NotFound /> },

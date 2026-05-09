@@ -242,11 +242,11 @@ const SiteFooter = () => {
 
               {/* Legal links */}
               <div className="flex items-center gap-4 text-[11px] text-white/35">
-                <Link to="/contact" className="transition hover:text-white/60">Privacy Policy</Link>
+                <Link to="/privacy" className="transition hover:text-white/60">Privacy Policy</Link>
                 <span className="text-white/15">|</span>
-                <Link to="/contact" className="transition hover:text-white/60">Terms of Service</Link>
+                <Link to="/terms" className="transition hover:text-white/60">Terms of Service</Link>
                 <span className="text-white/15">|</span>
-                <Link to="/contact" className="transition hover:text-white/60">Cookie Policy</Link>
+                <Link to="/data-deletion" className="transition hover:text-white/60">Data Deletion</Link>
               </div>
             </div>
 

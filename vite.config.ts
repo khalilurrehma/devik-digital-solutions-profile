@@ -25,6 +25,9 @@ export default defineConfig(() => ({
         "/contact",
         "/thank-you",
         "/insights/multi-tenant-saas-architecture",
+        "/privacy",
+        "/terms",
+        "/data-deletion",
       ];
     },
   },
